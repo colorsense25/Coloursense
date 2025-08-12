@@ -65,17 +65,17 @@ export default function Home() {
     {
       title: 'Modern Luxury',
       desc: 'Our sleek, contemporary styling stations',
-      image: 'https://res.cloudinary.com/dtg4pxws2/image/upload/v1712345678/salon-interior-1_hlj3xj.jpg'
+      image: 'https://res.cloudinary.com/dtg4pxws2/image/upload/v1754991091/20250812_1500_Modern_Barber_Shop_remix_01k2esryzxebytqft07n0yegjh_temmee.png'
     },
     {
       title: 'Relaxation Area',
       desc: 'Comfortable seating for your consultation',
-      image: 'https://res.cloudinary.com/dtg4pxws2/image/upload/v1712345678/salon-interior-2_hlj3xj.jpg'
+      image: 'https://res.cloudinary.com/dtg4pxws2/image/upload/v1755027050/20250813_0058_Salon_Wash_Station_remix_01k2fvz9e1fdnr8nyzypjs6adq_tjczib.png'
     },
     {
       title: 'Color Bar',
       desc: 'Where our magic happens',
-      image: 'https://res.cloudinary.com/dtg4pxws2/image/upload/v1712345678/salon-interior-3_hlj3xj.jpg'
+      image: 'https://res.cloudinary.com/dtg4pxws2/image/upload/v1755027252/20250813_0103_Professional_Equipment_Display_remix_01k2fw7tqxftc9gq8ta8kw9ksa_ulxgkk.png'
     }
   ];
 
@@ -164,20 +164,6 @@ export default function Home() {
               transition={{ delay: 1.2, duration: 0.8 }}
               className="flex flex-col sm:flex-row gap-4"
             >
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="bg-white text-black px-6 py-3 rounded-lg font-medium text-sm md:text-base"
-              >
-                Book Appointment
-              </motion.button>
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="border border-white text-white px-6 py-3 rounded-lg font-medium text-sm md:text-base"
-              >
-                Our Services
-              </motion.button>
             </motion.div>
           </div>
         </motion.div>
@@ -222,78 +208,14 @@ export default function Home() {
               <h3 className="text-lg md:text-xl font-semibold mb-2 md:mb-3 text-white">{service.name}</h3>
               <p className="text-gray-400 text-sm md:text-base">{service.desc}</p>
               <div className="mt-4 md:mt-6">
-                <button className="text-white hover:text-gray-300 text-xs md:text-sm font-medium flex items-center justify-center mx-auto">
-                  Learn more
-                  <FaChevronRight className="w-3 h-3 md:w-4 md:h-4 ml-2" />
-                </button>
               </div>
             </motion.div>
           ))}
         </div>
       </section>
 
-      {/* Team Section */}
-      <section className="py-16 md:py-24 px-6 sm:px-8 lg:px-12 bg-gray-950">
-        <motion.div
-          className="text-center mb-12 md:mb-20"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true, margin: "-100px" }}
-        >
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 md:mb-6">Meet Our Team</h2>
-          <div className="w-16 md:w-24 h-0.5 bg-white mx-auto"></div>
-          <p className="text-gray-400 mt-4 md:mt-6 max-w-2xl mx-auto text-sm md:text-base">
-            Our award-winning stylists are dedicated to making you look and feel your best
-          </p>
-        </motion.div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12">
-          {teamMembers.map((member, index) => (
-            <motion.div
-              key={index}
-              className="group relative overflow-hidden rounded-xl"
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              viewport={{ once: true, margin: "-50px" }}
-            >
-              <div className="relative h-80 md:h-96 w-full overflow-hidden">
-                <Image
-                  src={member.image}
-                  alt={member.name}
-                  fill
-                  className="object-cover transition-all duration-500 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-80" />
-              </div>
-              
-              <motion.div 
-                className="absolute bottom-0 left-0 p-6 md:p-8 w-full"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3 + index * 0.1 }}
-                viewport={{ once: true }}
-              >
-                <h3 className="text-xl md:text-2xl font-bold text-white mb-1">{member.name}</h3>
-                <p className="text-gray-300 mb-3 md:mb-4 text-sm md:text-base">{member.role}</p>
-                <p className="text-gray-300 text-sm md:text-base hidden group-hover:block transition-all duration-300">
-                  {member.bio}
-                </p>
-                <div className="mt-3">
-                  <button className="text-white hover:text-gray-300 text-xs md:text-sm font-medium flex items-center">
-                    View portfolio
-                    <FaChevronRight className="w-3 h-3 md:w-4 md:h-4 ml-2" />
-                  </button>
-                </div>
-              </motion.div>
-            </motion.div>
-          ))}
-        </div>
-      </section>
-
-      {/* Salon Interiors Section */}
-      <section className="py-16 md:py-24 px-6 sm:px-8 lg:px-12 bg-gray-900">
+     {/* Salon Interiors Section */}
+     <section className="py-16 md:py-24 px-6 sm:px-8 lg:px-12 bg-gray-900">
         <motion.div
           className="text-center mb-12 md:mb-20"
           initial={{ opacity: 0, y: 30 }}
@@ -312,20 +234,20 @@ export default function Home() {
           {interiorPhotos.map((photo, index) => (
             <motion.div
               key={index}
-              className="relative group overflow-hidden rounded-lg"
+              className="relative group overflow-hidden rounded-lg h-fit"
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               viewport={{ once: true, margin: "-50px" }}
             >
-              <div className="relative h-64 md:h-80 w-full">
+              <div className="relative h-120 md:h-90 w-full">
                 <Image
                   src={photo.image}
                   alt={photo.title}
                   fill
                   className="object-cover transition-all duration-500 group-hover:scale-110"
                 />
-                <div className="absolute inset-0 bg-black/30 group-hover:bg-black/50 transition-all duration-300" />
+                <div className="absolute inset-0 group-hover:bg-black/50 transition-all duration-300" />
               </div>
               
               <motion.div 
@@ -349,15 +271,49 @@ export default function Home() {
           transition={{ delay: 0.4 }}
           viewport={{ once: true }}
         >
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="border border-white text-white px-6 py-3 rounded-lg font-medium text-sm md:text-base"
-          >
-            View Full Gallery
-          </motion.button>
+
         </motion.div>
       </section>
+
+      {/* Team Section */}
+      <section className="py-16 md:py-24 px-6 sm:px-8 lg:px-12 bg-gray-950">
+        <motion.div
+          className="text-center mb-12 md:mb-20"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true, margin: "-100px" }}
+        >
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 md:mb-6">Our Expert Team</h2>
+          <div className="w-16 md:w-24 h-0.5 bg-white mx-auto"></div>
+          <p className="text-gray-400 mt-4 md:mt-6 max-w-2xl mx-auto text-sm md:text-base">
+            Meet the talented professionals behind your transformation
+          </p>
+        </motion.div>
+
+        <div className="relative">
+          {/* Single Team Photo */}
+          <motion.div
+            className="relative h-96 md:h-[32rem] w-full rounded-xl overflow-hidden"
+            initial={{ opacity: 0, scale: 0.98 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
+            <Image
+              src="https://res.cloudinary.com/dtg4pxws2/image/upload/v1755027790/20250813_0111_Punjabi_Salon_Team_simple_compose_01k2fwpa6ze41r143jd0zn1keq_xzltsf.png"
+              alt="Color Sense Team"
+              fill
+              className="object-cover object-center"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
+          </motion.div>
+
+        
+        </div>
+      </section>
+
+ 
 
       {/* Testimonials Section */}
       <section className="py-16 md:py-24 px-6 sm:px-8 lg:px-12 bg-gray-950">
@@ -407,68 +363,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <motion.section 
-        className="py-20 md:py-32 px-6 sm:px-8 lg:px-12 bg-black relative overflow-hidden"
-        style={{ y: isMobile ? 0 : yPos }}
-      >
-        <div className="absolute inset-0 bg-[url('https://res.cloudinary.com/dtg4pxws2/image/upload/v1712345678/texture-dark_hlj3xj.png')] opacity-10"></div>
-        <div className="relative z-10 max-w-4xl mx-auto text-center">
-          <motion.div 
-            className="mb-4 md:mb-6 flex justify-center"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true, margin: "-100px" }}
-          >
-            <div className="w-12 md:w-16 h-px bg-white" />
-          </motion.div>
-          
-          <motion.h2 
-            className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 md:mb-8"
-            initial={{ scale: 0.95, opacity: 0 }}
-            whileInView={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true, margin: "-100px" }}
-          >
-            <span className="text-white">Ready for Your</span>{' '}
-            <span className="text-white font-light">Transformation?</span>
-          </motion.h2>
-          
-          <motion.p 
-            className="text-lg md:text-xl text-gray-300 mb-8 md:mb-10 max-w-2xl mx-auto"
-            initial={{ y: 20, opacity: 0 }}
-            whileInView={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            viewport={{ once: true, margin: "-100px" }}
-          >
-            Book your appointment today and experience the Color Sense difference.
-          </motion.p>
-          
-          <motion.div
-            initial={{ scale: 0.9, opacity: 0 }}
-            whileInView={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            viewport={{ once: true, margin: "-100px" }}
-            className="flex flex-col sm:flex-row justify-center gap-4"
-          >
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="bg-white text-black font-medium px-6 py-3 md:px-8 md:py-4 rounded-lg text-base md:text-lg transition-all duration-300 shadow-lg"
-            >
-              Book Now
-            </motion.button>
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="border border-gray-600 hover:border-white text-gray-300 hover:text-white font-medium px-6 py-3 md:px-8 md:py-4 rounded-lg text-base md:text-lg transition-all duration-300"
-            >
-              Contact Us
-            </motion.button>
-          </motion.div>
-        </div>
-      </motion.section>
 
       {/* Footer */}
       <footer className="bg-gray-900 py-12 px-6 sm:px-8 lg:px-12 border-t border-gray-800">
