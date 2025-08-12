@@ -193,69 +193,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* About Section */}
-      <section className="py-16 md:py-24 px-6 sm:px-8 lg:px-12 bg-black">
-        <div className="flex flex-col lg:flex-row items-center gap-8 md:gap-16">
-          <motion.div 
-            className="lg:w-1/2 relative w-full"
-            initial={{ opacity: 0, x: -100 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true, margin: "-100px" }}
-          >
-            <div className="aspect-[4/5] rounded-xl overflow-hidden shadow-2xl relative">
-              <Image 
-                src="https://res.cloudinary.com/dtg4pxws2/image/upload/v1754991091/20250812_1500_Modern_Barber_Shop_remix_01k2esryzxebytqft07n0yegjh_temmee.png" 
-                alt="Salon Interior" 
-                fill
-                className="object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
-            </div>
-            <div className="absolute -bottom-4 -right-4 w-20 h-20 border-2 md:border-4 border-white rounded-lg z-10 hidden lg:block"></div>
-          </motion.div>
-          
-          <motion.div 
-            className="lg:w-1/2 mt-8 lg:mt-0"
-            initial={{ opacity: 0, x: 100 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            viewport={{ once: true, margin: "-100px" }}
-          >
-            <div className="mb-3 md:mb-4 flex items-center">
-              <div className="w-12 md:w-16 h-px bg-white mr-3 md:mr-4" />
-              <span className="text-xs md:text-sm tracking-widest text-gray-300">ABOUT US</span>
-            </div>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 md:mb-6 text-white">Our Story</h2>
-            <p className="text-gray-300 mb-4 md:mb-6 leading-relaxed text-sm md:text-base">
-              Founded in 2010, Color Sense Salon has been transforming hair and elevating confidence with our 
-              team of master stylists. We combine technical expertise with artistic vision to create looks 
-              that are as unique as you are.
-            </p>
-            <p className="text-gray-300 mb-6 md:mb-8 leading-relaxed text-sm md:text-base">
-              Our eco-conscious salon uses only premium products that nourish your hair while delivering 
-              stunning results. We believe beauty should be sustainable and ethical without compromising on quality.
-            </p>
-            <div className="flex flex-wrap gap-3 md:gap-4">
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="bg-white text-black font-medium px-4 py-2 md:px-6 md:py-3 rounded-lg transition-all duration-300 text-sm md:text-base"
-              >
-                Meet Our Team
-              </motion.button>
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="border border-gray-600 hover:border-white text-gray-300 hover:text-white font-medium px-4 py-2 md:px-6 md:py-3 rounded-lg transition-all duration-300 text-sm md:text-base"
-              >
-                Our Philosophy
-              </motion.button>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
       {/* Testimonials */}
       <section className="py-16 md:py-24 px-6 sm:px-8 lg:px-12 bg-gray-900">
         <motion.div
