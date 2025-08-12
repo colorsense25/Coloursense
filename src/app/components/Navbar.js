@@ -95,7 +95,7 @@ const Navbar = () => {
                     transition: { duration: 0.5 }
                   }}
                 >
-                  <img src="/logo.png" className='h-[80px] w-[80px]'></img>
+                  <img src="/logo.png" ></img>
                 </motion.div>
                 Color Sense
               </Link>
