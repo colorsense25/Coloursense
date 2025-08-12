@@ -40,6 +40,45 @@ export default function Home() {
     { name: 'Extensions', icon: <FaCrown size={isMobile ? 30 : 40} />, desc: 'Luxurious length & volume' },
   ];
 
+  const teamMembers = [
+    {
+      name: 'Alex Rivera',
+      role: 'Master Stylist',
+      image: 'https://res.cloudinary.com/dtg4pxws2/image/upload/v1712345678/stylist-1_hlj3xj.jpg',
+      bio: 'Specializing in precision cuts and balayage techniques with 12 years experience.'
+    },
+    {
+      name: 'Sophie Chen',
+      role: 'Color Specialist',
+      image: 'https://res.cloudinary.com/dtg4pxws2/image/upload/v1712345678/stylist-2_hlj3xj.jpg',
+      bio: 'Expert in vibrant fashion colors and natural-looking dimensional color.'
+    },
+    {
+      name: 'Marcus Johnson',
+      role: 'Extensions Expert',
+      image: 'https://res.cloudinary.com/dtg4pxws2/image/upload/v1712345678/stylist-3_hlj3xj.jpg',
+      bio: 'Creates flawless, undetectable extensions tailored to each client.'
+    }
+  ];
+
+  const interiorPhotos = [
+    {
+      title: 'Modern Luxury',
+      desc: 'Our sleek, contemporary styling stations',
+      image: 'https://res.cloudinary.com/dtg4pxws2/image/upload/v1712345678/salon-interior-1_hlj3xj.jpg'
+    },
+    {
+      title: 'Relaxation Area',
+      desc: 'Comfortable seating for your consultation',
+      image: 'https://res.cloudinary.com/dtg4pxws2/image/upload/v1712345678/salon-interior-2_hlj3xj.jpg'
+    },
+    {
+      title: 'Color Bar',
+      desc: 'Where our magic happens',
+      image: 'https://res.cloudinary.com/dtg4pxws2/image/upload/v1712345678/salon-interior-3_hlj3xj.jpg'
+    }
+  ];
+
   const testimonials = [
     { 
       name: 'Sarah J.', 
@@ -193,8 +232,135 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Testimonials */}
+      {/* Team Section */}
+      <section className="py-16 md:py-24 px-6 sm:px-8 lg:px-12 bg-gray-950">
+        <motion.div
+          className="text-center mb-12 md:mb-20"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true, margin: "-100px" }}
+        >
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 md:mb-6">Meet Our Team</h2>
+          <div className="w-16 md:w-24 h-0.5 bg-white mx-auto"></div>
+          <p className="text-gray-400 mt-4 md:mt-6 max-w-2xl mx-auto text-sm md:text-base">
+            Our award-winning stylists are dedicated to making you look and feel your best
+          </p>
+        </motion.div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12">
+          {teamMembers.map((member, index) => (
+            <motion.div
+              key={index}
+              className="group relative overflow-hidden rounded-xl"
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+              viewport={{ once: true, margin: "-50px" }}
+            >
+              <div className="relative h-80 md:h-96 w-full overflow-hidden">
+                <Image
+                  src={member.image}
+                  alt={member.name}
+                  fill
+                  className="object-cover transition-all duration-500 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-80" />
+              </div>
+              
+              <motion.div 
+                className="absolute bottom-0 left-0 p-6 md:p-8 w-full"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3 + index * 0.1 }}
+                viewport={{ once: true }}
+              >
+                <h3 className="text-xl md:text-2xl font-bold text-white mb-1">{member.name}</h3>
+                <p className="text-gray-300 mb-3 md:mb-4 text-sm md:text-base">{member.role}</p>
+                <p className="text-gray-300 text-sm md:text-base hidden group-hover:block transition-all duration-300">
+                  {member.bio}
+                </p>
+                <div className="mt-3">
+                  <button className="text-white hover:text-gray-300 text-xs md:text-sm font-medium flex items-center">
+                    View portfolio
+                    <FaChevronRight className="w-3 h-3 md:w-4 md:h-4 ml-2" />
+                  </button>
+                </div>
+              </motion.div>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
+      {/* Salon Interiors Section */}
       <section className="py-16 md:py-24 px-6 sm:px-8 lg:px-12 bg-gray-900">
+        <motion.div
+          className="text-center mb-12 md:mb-20"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true, margin: "-100px" }}
+        >
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 md:mb-6">Our Salon</h2>
+          <div className="w-16 md:w-24 h-0.5 bg-white mx-auto"></div>
+          <p className="text-gray-400 mt-4 md:mt-6 max-w-2xl mx-auto text-sm md:text-base">
+            A luxurious space designed for your comfort and relaxation
+          </p>
+        </motion.div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
+          {interiorPhotos.map((photo, index) => (
+            <motion.div
+              key={index}
+              className="relative group overflow-hidden rounded-lg"
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              viewport={{ once: true, margin: "-50px" }}
+            >
+              <div className="relative h-64 md:h-80 w-full">
+                <Image
+                  src={photo.image}
+                  alt={photo.title}
+                  fill
+                  className="object-cover transition-all duration-500 group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-black/30 group-hover:bg-black/50 transition-all duration-300" />
+              </div>
+              
+              <motion.div 
+                className="absolute bottom-0 left-0 p-4 md:p-6 w-full"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3 + index * 0.1 }}
+                viewport={{ once: true }}
+              >
+                <h3 className="text-lg md:text-xl font-bold text-white">{photo.title}</h3>
+                <p className="text-gray-300 text-sm md:text-base">{photo.desc}</p>
+              </motion.div>
+            </motion.div>
+          ))}
+        </div>
+
+        <motion.div 
+          className="text-center mt-12 md:mt-16"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ delay: 0.4 }}
+          viewport={{ once: true }}
+        >
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="border border-white text-white px-6 py-3 rounded-lg font-medium text-sm md:text-base"
+          >
+            View Full Gallery
+          </motion.button>
+        </motion.div>
+      </section>
+
+      {/* Testimonials Section */}
+      <section className="py-16 md:py-24 px-6 sm:px-8 lg:px-12 bg-gray-950">
         <motion.div
           className="text-center mb-12 md:mb-20"
           initial={{ opacity: 0, y: 30 }}
@@ -382,4 +548,4 @@ export default function Home() {
       </footer>
     </div>
   );
-}
+}s
