@@ -16,7 +16,6 @@ import {
   FaMapMarkerAlt,
   FaPhone,
   FaEnvelope,
-
 } from 'react-icons/fa';
 import { TiScissors } from "react-icons/ti";
 
@@ -35,10 +34,10 @@ export default function Home() {
   }, []);
 
   const services = [
-    { name: 'Hair Styling', icon: <TiScissors size={60} />, desc: 'Modern cuts & timeless styles' },
-    { name: 'Coloring', icon: <FaPalette size={40} />, desc: 'Vibrant & natural tones' },
-    { name: 'Treatments', icon: <FaSpa size={40} />, desc: 'Revitalizing hair therapies' },
-    { name: 'Extensions', icon: <FaCrown size={40} />, desc: 'Luxurious length & volume' },
+    { name: 'Hair Styling', icon: <TiScissors size={isMobile ? 40 : 60} />, desc: 'Modern cuts & timeless styles' },
+    { name: 'Coloring', icon: <FaPalette size={isMobile ? 30 : 40} />, desc: 'Vibrant & natural tones' },
+    { name: 'Treatments', icon: <FaSpa size={isMobile ? 30 : 40} />, desc: 'Revitalizing hair therapies' },
+    { name: 'Extensions', icon: <FaCrown size={isMobile ? 30 : 40} />, desc: 'Luxurious length & volume' },
   ];
 
   const testimonials = [
@@ -63,7 +62,7 @@ export default function Home() {
   ];
 
   return (
-    <div className="bg-gray-950 text-gray-100 min-h-screen">
+    <div className="bg-black text-white min-h-screen">
       {/* Hero Section */}
       <section className="relative h-screen overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-black/80 to-black/30 z-10" />
@@ -84,40 +83,40 @@ export default function Home() {
         </motion.div>
 
         <motion.div 
-          className="relative z-20 h-full flex flex-col justify-start pt-45 px-6 sm:px-12 lg:px-24 bg-blend-hard-light"
+          className="relative z-20 h-full flex flex-col justify-center px-6 sm:px-12 lg:px-24"
           initial={{ y: 50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.5, duration: 1 }}
         >
           <div className="max-w-3xl">
             <motion.div 
-              className="mb-6 flex items-center"
+              className="mb-4 md:mb-6 flex items-center"
               initial={{ x: -50, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
               transition={{ delay: 0.7, duration: 0.8 }}
             >
-              <div className="w-16 h-px bg-amber-400 mr-4" />
-              <span className="text-sm tracking-widest text-gray-300">LUXURY HAIR EXPERIENCE</span>
+              <div className="w-12 md:w-16 h-px bg-white mr-3 md:mr-4" />
+              <span className="text-xs md:text-sm tracking-widest text-gray-300">LUXURY HAIR EXPERIENCE</span>
             </motion.div>
             
             <motion.h1 
-              className="text-5xl sm:text-6xl md:text-7xl font-bold mb-6 leading-tight"
+              className="text-4xl sm:text-5xl md:text-6xl font-bold mb-4 md:mb-6 leading-tight"
               initial={{ y: 30, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.8, duration: 0.8 }}
             >
               <span className="text-white">Color</span>{' '}
-              <span className="text-amber-400">Sense</span>
+              <span className="text-white font-light">Sense</span>
             </motion.h1>
             
             <motion.p 
-              className="text-xl sm:text-2xl text-gray-300 mb-8 max-w-2xl"
+              className="text-lg sm:text-xl md:text-2xl text-gray-300 mb-6 md:mb-8 max-w-2xl"
               initial={{ y: 30, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 1, duration: 0.8 }}
             >
-             COLOR SENSE
-             UNISEX SALON & ACADEMY
+              COLOR SENSE<br />
+              UNISEX SALON & ACADEMY
             </motion.p>
             
             <motion.div
@@ -126,7 +125,20 @@ export default function Home() {
               transition={{ delay: 1.2, duration: 0.8 }}
               className="flex flex-col sm:flex-row gap-4"
             >
-
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="bg-white text-black px-6 py-3 rounded-lg font-medium text-sm md:text-base"
+              >
+                Book Appointment
+              </motion.button>
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="border border-white text-white px-6 py-3 rounded-lg font-medium text-sm md:text-base"
+              >
+                Our Services
+              </motion.button>
             </motion.div>
           </div>
         </motion.div>
@@ -136,44 +148,44 @@ export default function Home() {
           animate={{ y: [0, 15, 0] }}
           transition={{ duration: 2, repeat: Infinity }}
         >
-          <FaChevronDown className="w-8 h-8 text-gray-100" />
+          <FaChevronDown className="w-6 h-6 text-white" />
         </motion.div>
       </section>
 
       {/* Services Section */}
-      <section className="py-24 px-6 sm:px-12 lg:px-24 bg-gray-900">
+      <section className="py-16 md:py-24 px-6 sm:px-8 lg:px-12 bg-gray-900">
         <motion.div
-          className="text-center mb-20"
+          className="text-center mb-12 md:mb-20"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, margin: "-100px" }}
         >
-          <h2 className="text-3xl sm:text-4xl font-bold mb-6">Our Services</h2>
-          <div className="w-24 h-1 bg-amber-500 mx-auto"></div>
-          <p className="text-gray-400 mt-6 max-w-2xl mx-auto">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 md:mb-6">Our Services</h2>
+          <div className="w-16 md:w-24 h-0.5 bg-white mx-auto"></div>
+          <p className="text-gray-400 mt-4 md:mt-6 max-w-2xl mx-auto text-sm md:text-base">
             Premium hair services tailored to your unique style and needs
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
           {services.map((service, index) => (
             <motion.div
               key={service.name}
-              className="bg-gray-800 p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-700 hover:border-amber-400/30"
+              className="bg-gray-800 p-6 md:p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-700 hover:border-white/30"
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               whileHover={{ y: -10 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, margin: "-50px" }}
             >
-              <div className="text-amber-400 mb-6 flex justify-center">{service.icon}</div>
-              <h3 className="text-xl font-semibold mb-3 text-white">{service.name}</h3>
-              <p className="text-gray-400">{service.desc}</p>
-              <div className="mt-6">
-                <button className="text-amber-400 hover:text-amber-300 text-sm font-medium flex items-center justify-center">
+              <div className="text-white mb-4 md:mb-6 flex justify-center">{service.icon}</div>
+              <h3 className="text-lg md:text-xl font-semibold mb-2 md:mb-3 text-white">{service.name}</h3>
+              <p className="text-gray-400 text-sm md:text-base">{service.desc}</p>
+              <div className="mt-4 md:mt-6">
+                <button className="text-white hover:text-gray-300 text-xs md:text-sm font-medium flex items-center justify-center mx-auto">
                   Learn more
-                  <FaChevronRight className="w-4 h-4 ml-2" />
+                  <FaChevronRight className="w-3 h-3 md:w-4 md:h-4 ml-2" />
                 </button>
               </div>
             </motion.div>
@@ -182,14 +194,14 @@ export default function Home() {
       </section>
 
       {/* About Section */}
-      <section className="py-24 px-6 sm:px-12 lg:px-24 bg-gray-950">
-        <div className="flex flex-col lg:flex-row items-center gap-16">
+      <section className="py-16 md:py-24 px-6 sm:px-8 lg:px-12 bg-black">
+        <div className="flex flex-col lg:flex-row items-center gap-8 md:gap-16">
           <motion.div 
-            className="lg:w-1/2 relative"
+            className="lg:w-1/2 relative w-full"
             initial={{ opacity: 0, x: -100 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "-100px" }}
           >
             <div className="aspect-[4/5] rounded-xl overflow-hidden shadow-2xl relative">
               <Image 
@@ -200,83 +212,91 @@ export default function Home() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
             </div>
-            <div className="absolute -bottom-6 -right-6 w-32 h-32 border-4 border-amber-400 rounded-lg z-10 hidden lg:block"></div>
+            <div className="absolute -bottom-4 -right-4 w-20 h-20 border-2 md:border-4 border-white rounded-lg z-10 hidden lg:block"></div>
           </motion.div>
           
           <motion.div 
-            className="lg:w-1/2"
+            className="lg:w-1/2 mt-8 lg:mt-0"
             initial={{ opacity: 0, x: 100 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "-100px" }}
           >
-            <div className="mb-4 flex items-center">
-              <div className="w-16 h-px bg-amber-400 mr-4" />
-              <span className="text-sm tracking-widest text-gray-300">ABOUT US</span>
+            <div className="mb-3 md:mb-4 flex items-center">
+              <div className="w-12 md:w-16 h-px bg-white mr-3 md:mr-4" />
+              <span className="text-xs md:text-sm tracking-widest text-gray-300">ABOUT US</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl font-bold mb-6 text-white">Our Story</h2>
-            <p className="text-gray-300 mb-6 leading-relaxed">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 md:mb-6 text-white">Our Story</h2>
+            <p className="text-gray-300 mb-4 md:mb-6 leading-relaxed text-sm md:text-base">
               Founded in 2010, Color Sense Salon has been transforming hair and elevating confidence with our 
               team of master stylists. We combine technical expertise with artistic vision to create looks 
               that are as unique as you are.
             </p>
-            <p className="text-gray-300 mb-8 leading-relaxed">
+            <p className="text-gray-300 mb-6 md:mb-8 leading-relaxed text-sm md:text-base">
               Our eco-conscious salon uses only premium products that nourish your hair while delivering 
               stunning results. We believe beauty should be sustainable and ethical without compromising on quality.
             </p>
-            <div className="flex flex-wrap gap-4">
-              <button className="bg-amber-500 hover:bg-amber-600 text-gray-900 font-medium px-6 py-3 rounded-lg transition-all duration-300">
+            <div className="flex flex-wrap gap-3 md:gap-4">
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="bg-white text-black font-medium px-4 py-2 md:px-6 md:py-3 rounded-lg transition-all duration-300 text-sm md:text-base"
+              >
                 Meet Our Team
-              </button>
-              <button className="border border-gray-600 hover:border-amber-400 text-gray-300 hover:text-amber-400 font-medium px-6 py-3 rounded-lg transition-all duration-300">
+              </motion.button>
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="border border-gray-600 hover:border-white text-gray-300 hover:text-white font-medium px-4 py-2 md:px-6 md:py-3 rounded-lg transition-all duration-300 text-sm md:text-base"
+              >
                 Our Philosophy
-              </button>
+              </motion.button>
             </div>
           </motion.div>
         </div>
       </section>
 
       {/* Testimonials */}
-      <section className="py-24 px-6 sm:px-12 lg:px-24 bg-gray-900">
+      <section className="py-16 md:py-24 px-6 sm:px-8 lg:px-12 bg-gray-900">
         <motion.div
-          className="text-center mb-20"
+          className="text-center mb-12 md:mb-20"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, margin: "-100px" }}
         >
-          <h2 className="text-3xl sm:text-4xl font-bold mb-6">Client Stories</h2>
-          <div className="w-24 h-1 bg-amber-500 mx-auto"></div>
-          <p className="text-gray-400 mt-6 max-w-2xl mx-auto">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 md:mb-6">Client Stories</h2>
+          <div className="w-16 md:w-24 h-0.5 bg-white mx-auto"></div>
+          <p className="text-gray-400 mt-4 md:mt-6 max-w-2xl mx-auto text-sm md:text-base">
             Hear what our clients say about their Color Sense experience
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {testimonials.map((testimonial, index) => (
             <motion.div
               key={index}
-              className="bg-gray-800 p-8 rounded-xl border border-gray-700 hover:border-amber-400/30 transition-all duration-300"
+              className="bg-gray-800 p-6 md:p-8 rounded-xl border border-gray-700 hover:border-white/30 transition-all duration-300"
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, margin: "-50px" }}
             >
-              <div className="flex items-center mb-6">
-                <div className="w-14 h-14 rounded-full bg-gray-700 mr-4 flex items-center justify-center text-xl">
+              <div className="flex items-center mb-4 md:mb-6">
+                <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-gray-700 mr-3 md:mr-4 flex items-center justify-center text-lg md:text-xl">
                   {testimonial.name.charAt(0)}
                 </div>
                 <div>
-                  <h4 className="font-semibold text-white">{testimonial.name}</h4>
-                  <p className="text-gray-400 text-sm">{testimonial.role}</p>
+                  <h4 className="font-semibold text-white text-sm md:text-base">{testimonial.name}</h4>
+                  <p className="text-gray-400 text-xs md:text-sm">{testimonial.role}</p>
                 </div>
               </div>
-              <p className="text-gray-300 mb-6 italic">
+              <p className="text-gray-300 mb-4 md:mb-6 italic text-sm md:text-base">
                 &ldquo;{testimonial.quote}&rdquo;
               </p>
-              <div className="flex text-amber-400">
+              <div className="flex text-white">
                 {[...Array(testimonial.rating)].map((_, i) => (
-                  <FaStar key={i} className="w-5 h-5" />
+                  <FaStar key={i} className="w-4 h-4 md:w-5 md:h-5" />
                 ))}
               </div>
             </motion.div>
@@ -286,38 +306,38 @@ export default function Home() {
 
       {/* CTA Section */}
       <motion.section 
-        className="py-32 px-6 sm:px-12 lg:px-24 bg-gray-950 relative overflow-hidden"
+        className="py-20 md:py-32 px-6 sm:px-8 lg:px-12 bg-black relative overflow-hidden"
         style={{ y: isMobile ? 0 : yPos }}
       >
         <div className="absolute inset-0 bg-[url('https://res.cloudinary.com/dtg4pxws2/image/upload/v1712345678/texture-dark_hlj3xj.png')] opacity-10"></div>
         <div className="relative z-10 max-w-4xl mx-auto text-center">
           <motion.div 
-            className="mb-6 flex justify-center"
+            className="mb-4 md:mb-6 flex justify-center"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "-100px" }}
           >
-            <div className="w-16 h-px bg-amber-400" />
+            <div className="w-12 md:w-16 h-px bg-white" />
           </motion.div>
           
           <motion.h2 
-            className="text-3xl sm:text-4xl font-bold mb-8"
+            className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 md:mb-8"
             initial={{ scale: 0.95, opacity: 0 }}
             whileInView={{ scale: 1, opacity: 1 }}
             transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "-100px" }}
           >
             <span className="text-white">Ready for Your</span>{' '}
-            <span className="text-amber-400">Transformation?</span>
+            <span className="text-white font-light">Transformation?</span>
           </motion.h2>
           
           <motion.p 
-            className="text-xl text-gray-300 mb-10 max-w-2xl mx-auto"
+            className="text-lg md:text-xl text-gray-300 mb-8 md:mb-10 max-w-2xl mx-auto"
             initial={{ y: 20, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "-100px" }}
           >
             Book your appointment today and experience the Color Sense difference.
           </motion.p>
@@ -326,50 +346,58 @@ export default function Home() {
             initial={{ scale: 0.9, opacity: 0 }}
             whileInView={{ scale: 1, opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.4 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "-100px" }}
             className="flex flex-col sm:flex-row justify-center gap-4"
           >
-            <button className="bg-amber-500 hover:bg-amber-600 text-gray-900 font-medium px-8 py-4 rounded-lg text-lg transition-all duration-300 transform hover:scale-105 shadow-lg">
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="bg-white text-black font-medium px-6 py-3 md:px-8 md:py-4 rounded-lg text-base md:text-lg transition-all duration-300 shadow-lg"
+            >
               Book Now
-            </button>
-            <button className="border border-gray-600 hover:border-amber-400 text-gray-300 hover:text-amber-400 font-medium px-8 py-4 rounded-lg text-lg transition-all duration-300 transform hover:scale-105">
+            </motion.button>
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="border border-gray-600 hover:border-white text-gray-300 hover:text-white font-medium px-6 py-3 md:px-8 md:py-4 rounded-lg text-base md:text-lg transition-all duration-300"
+            >
               Contact Us
-            </button>
+            </motion.button>
           </motion.div>
         </div>
       </motion.section>
 
       {/* Footer */}
-      <footer className="bg-gray-900 py-12 px-6 sm:px-12 lg:px-24 border-t border-gray-800">
+      <footer className="bg-gray-900 py-12 px-6 sm:px-8 lg:px-12 border-t border-gray-800">
         <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
             <div>
-              <h3 className="text-xl font-bold text-white mb-6">Color Sense</h3>
-              <p className="text-gray-400 mb-6">
+              <h3 className="text-lg md:text-xl font-bold text-white mb-4 md:mb-6">Color Sense</h3>
+              <p className="text-gray-400 mb-4 md:mb-6 text-sm md:text-base">
                 Luxury hair salon specializing in personalized color and cutting services.
               </p>
               <div className="flex space-x-4">
-                <a href="#" className="text-gray-400 hover:text-amber-400 transition-colors">
+                <a href="#" className="text-gray-400 hover:text-white transition-colors">
                   <span className="sr-only">Facebook</span>
-                  <FaFacebook className="h-6 w-6" />
+                  <FaFacebook className="h-5 w-5 md:h-6 md:w-6" />
                 </a>
-                <a href="#" className="text-gray-400 hover:text-amber-400 transition-colors">
+                <a href="#" className="text-gray-400 hover:text-white transition-colors">
                   <span className="sr-only">Instagram</span>
-                  <FaInstagram className="h-6 w-6" />
+                  <FaInstagram className="h-5 w-5 md:h-6 md:w-6" />
                 </a>
-                <a href="#" className="text-gray-400 hover:text-amber-400 transition-colors">
+                <a href="#" className="text-gray-400 hover:text-white transition-colors">
                   <span className="sr-only">Twitter</span>
-                  <FaTwitter className="h-6 w-6" />
+                  <FaTwitter className="h-5 w-5 md:h-6 md:w-6" />
                 </a>
               </div>
             </div>
             
             <div>
-              <h4 className="text-lg font-semibold text-white mb-6">Quick Links</h4>
-              <ul className="space-y-3">
+              <h4 className="text-base md:text-lg font-semibold text-white mb-4 md:mb-6">Quick Links</h4>
+              <ul className="space-y-2 md:space-y-3">
                 {['Home', 'Services', 'About', 'Gallery', 'Contact'].map((item) => (
                   <li key={item}>
-                    <a href="#" className="text-gray-400 hover:text-amber-400 transition-colors">
+                    <a href="#" className="text-gray-400 hover:text-white transition-colors text-sm md:text-base">
                       {item}
                     </a>
                   </li>
@@ -378,11 +406,11 @@ export default function Home() {
             </div>
             
             <div>
-              <h4 className="text-lg font-semibold text-white mb-6">Services</h4>
-              <ul className="space-y-3">
+              <h4 className="text-base md:text-lg font-semibold text-white mb-4 md:mb-6">Services</h4>
+              <ul className="space-y-2 md:space-y-3">
                 {services.map((service) => (
                   <li key={service.name}>
-                    <a href="#" className="text-gray-400 hover:text-amber-400 transition-colors">
+                    <a href="#" className="text-gray-400 hover:text-white transition-colors text-sm md:text-base">
                       {service.name}
                     </a>
                   </li>
@@ -391,26 +419,26 @@ export default function Home() {
             </div>
             
             <div>
-              <h4 className="text-lg font-semibold text-white mb-6">Contact</h4>
-              <address className="text-gray-400 not-italic">
-                <p className="mb-3 flex items-center">
-                  <FaMapMarkerAlt className="mr-2" />
+              <h4 className="text-base md:text-lg font-semibold text-white mb-4 md:mb-6">Contact</h4>
+              <address className="text-gray-400 not-italic text-sm md:text-base">
+                <p className="mb-2 md:mb-3 flex items-center">
+                  <FaMapMarkerAlt className="mr-2 text-xs md:text-sm" />
                   123 Beauty Street
                 </p>
-                <p className="mb-3">New York, NY 10001</p>
-                <p className="mb-3 flex items-center">
-                  <FaPhone className="mr-2" />
+                <p className="mb-2 md:mb-3">New York, NY 10001</p>
+                <p className="mb-2 md:mb-3 flex items-center">
+                  <FaPhone className="mr-2 text-xs md:text-sm" />
                   (555) 123-4567
                 </p>
                 <p className="flex items-center">
-                  <FaEnvelope className="mr-2" />
+                  <FaEnvelope className="mr-2 text-xs md:text-sm" />
                   info@colorsense.com
                 </p>
               </address>
             </div>
           </div>
           
-          <div className="border-t border-gray-800 mt-12 pt-8 text-center text-gray-500 text-sm">
+          <div className="border-t border-gray-800 mt-8 md:mt-12 pt-8 text-center text-gray-500 text-xs md:text-sm">
             <p>© {new Date().getFullYear()} Color Sense Salon. All rights reserved.</p>
           </div>
         </div>
