@@ -1,6 +1,6 @@
-// components/AdminLogin.jsx
+'use client'
 import { useState, useEffect } from 'react';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { Eye, EyeOff, Loader2 } from 'lucide-react';
 
@@ -53,8 +53,10 @@ export default function AdminLogin() {
   };
 
   return (
-    <div className={`min-h-screen flex items-center justify-center ${darkMode ? 'dark' : ''}`}>
-      <div className="bg-white dark:bg-gray-900 p-8 rounded-lg shadow-lg w-full max-w-md">
+      <>
+            <div className={`min-h-screen flex items-center justify-center ${darkMode ? 'dark' : ''}`}>
+      <div className="bg-black dark:bg-gray-900 p-8 rounded-lg shadow-lg w-full max-w-md">
+      
         <div className="text-center mb-8">
           <h1 className="text-3xl font-bold text-gray-800 dark:text-white">Admin Login</h1>
           <p className="text-gray-600 dark:text-gray-300 mt-2">
@@ -160,5 +162,6 @@ export default function AdminLogin() {
         </div>
       </div>
     </div>
+      </>
   );
 }
