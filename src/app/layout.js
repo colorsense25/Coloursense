@@ -26,7 +26,7 @@ export default function RootLayout({ children }) {
       >
         <ScrollToTop/>
         <Navbar/>
-        <main>{children}</main>
+        <main className=" md:pt-[50px]">{children}</main>
       </body>
     </html>
   );

@@ -72,9 +72,9 @@ const Navbar = () => {
     <>
       {/* Main Navbar */}
       <motion.nav 
-        className={`fixed w-full z-50 transition-all duration-300 bg-gray-900 shadow-sm`}
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
+        className={`fixed w-full z-50 transition-all duration-300 bg-gray-900 shadow-sm `}
+        initial={{ y: 0 }}  // Changed from -100 to 0 to remove the downward motion
+        animate={{ y: 0 }}  // Kept as 0
         transition={{ type: 'spring', stiffness: 300, damping: 20 }}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
