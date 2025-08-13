@@ -231,7 +231,7 @@ const AdminDashboard = () => {
               <FaUserGraduate className="text-white text-lg sm:text-xl" />
             </motion.div>
             <h1 className="text-xl sm:text-2xl md:text-3xl font-bold text-blue-400 ml-2 sm:p-4">
-              SkillUp Admin
+              Color Sense Admin Section
             </h1>
           </Link>
         </div>
