@@ -3,6 +3,7 @@ import "./globals.css";
 import Navbar from "./components/Navbar";
 import ScrollToTop from "./components/ScrollToTop";
 
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -26,7 +27,11 @@ export default function RootLayout({ children }) {
       >
         <ScrollToTop/>
         <Navbar/>
-        <main className=" md:pt-[50px]">{children}</main>
+        <main className=" md:pt-[50px]">
+         
+            {children} 
+          
+        </main>
       </body>
     </html>
   );
