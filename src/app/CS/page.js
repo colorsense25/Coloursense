@@ -14,6 +14,8 @@ import {
   FaChevronLeft, FaChevronRight, FaSignOutAlt, FaCalendarAlt,
   FaTimes, FaHome, FaChartLine, FaCog, FaBars
 } from 'react-icons/fa';
+import { GrGallery } from "react-icons/gr";
+import { GrUserAdmin } from "react-icons/gr";
 
 const AdminDashboard = () => {
   const [loading, setLoading] = useState(true);
@@ -139,20 +141,20 @@ const AdminDashboard = () => {
     { 
       id: 'edit-gallery', 
       title: 'Edit Gallery', 
-      icon: <FaCamera className="text-2xl md:text-3xl lg:text-4xl" />,
+      icon: <GrGallery className="text-2xl md:text-3xl lg:text-4xl" />,
       bgColor: 'bg-teal-900',
       hoverBgColor: 'bg-teal-800',
       textColor: 'text-teal-100',
-      path: '/skillup/gallery/edit'
+      path: '/CS/editGallery'
     },
     { 
-      id: 'add-photo', 
-      title: 'Student Photos', 
-      icon: <FaCamera className="text-2xl md:text-3xl lg:text-4xl" />,
+      id: 'add-admin', 
+      title: 'Add Admin', 
+      icon: <GrUserAdmin  className="text-2xl md:text-3xl lg:text-4xl" />,
       bgColor: 'bg-cyan-900',
       hoverBgColor: 'bg-cyan-800',
       textColor: 'text-cyan-100',
-      path: '/skillup/students/add-photo'
+      path: '/CS/addAdmin'
     },
     { 
       id: 'certificates', 

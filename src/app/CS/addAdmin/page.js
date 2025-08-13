@@ -14,6 +14,8 @@ const AdminRegister = () => {
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const [success, setSuccess] = useState('');
+  const [isAdmin, setIsAdmin] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -26,6 +28,7 @@ const AdminRegister = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
+    setSuccess('');
     
     if (formData.password !== formData.confirmPassword) {
       setError('Passwords do not match');
@@ -38,6 +41,7 @@ const AdminRegister = () => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': `Bearer ${localStorage.getItem('adminToken')}`
         },
         body: JSON.stringify({
           name: formData.name,
@@ -52,54 +56,59 @@ const AdminRegister = () => {
         throw new Error(data.message || 'Registration failed');
       }
 
-      // Store the received data in localStorage
-      localStorage.setItem('adminData', JSON.stringify({
-        name: data.name,
-        email: data.email,
-        role: data.role,
-        token: data.token
-      }));
+      // Show success message
+      setSuccess('New admin created successfully! Redirecting to login...');
+      
+      // Reset form
+      setFormData({
+        name: '',
+        email: '',
+        password: '',
+        confirmPassword: ''
+      });
 
-      // Store the token separately for easy access
-      localStorage.setItem('adminToken', data.token);
-
-      // Registration successful - redirect to dashboard
-      router.push('/admin/dashboard');
+      // Redirect to login after 2 seconds
+      setTimeout(() => {
+        router.push('/adminLogin');
+      }, 2000);
     } catch (err) {
       setError(err.message);
-      // Clear any existing data on error
-      localStorage.removeItem('adminData');
-      localStorage.removeItem('adminToken');
     } finally {
       setLoading(false);
     }
   };
 
-  // Helper function to check if user is already logged in
-  const checkAuth = () => {
+  // Check if user is admin on component mount
+  useEffect(() => {
     if (typeof window !== 'undefined') {
-      const adminData = localStorage.getItem('adminData');
-      if (adminData) {
-        router.push('/admin/dashboard');
+      const adminToken = localStorage.getItem('adminToken');
+      if (!adminToken) {
+        router.push('/admin/login');
+      } else {
+        setIsAdmin(true);
       }
     }
-  };
+  }, [router]);
 
-  // Check auth status on component mount
-  useEffect(() => {
-    checkAuth();
-  }, []);
+  if (!isAdmin) {
+    return (
+      <div className="min-h-screen bg-[#030712] text-gray-100 flex items-center justify-center">
+        <div className="text-center">
+          <p>Checking authentication...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
-    <div className="min-h-screen bg-black text-gray-100 flex flex-col items-center justify-center p-4">
-
+    <div className="min-h-screen bg-[#030712] pt-15 text-gray-100 flex flex-col items-center justify-center p-4">
       <motion.div 
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
         className="w-full max-w-md"
       >
-               <div className="bg-gray-900 rounded-xl shadow-2xl overflow-hidden border border-gray-800">
+        <div className="bg-gray-900 rounded-xl shadow-2xl overflow-hidden border border-gray-800">
           <div className="relative h-3 bg-gradient-to-r from-purple-600 to-blue-500">
             <motion.div 
               className="h-full bg-gradient-to-r from-blue-500 to-purple-600"
@@ -116,7 +125,7 @@ const AdminRegister = () => {
               animate={{ opacity: 1 }}
               transition={{ delay: 0.2 }}
             >
-              Admin Registration
+              Create New Admin
             </motion.h1>
 
             {error && (
@@ -126,6 +135,16 @@ const AdminRegister = () => {
                 animate={{ opacity: 1, y: 0 }}
               >
                 {error}
+              </motion.div>
+            )}
+
+            {success && (
+              <motion.div 
+                className="mb-4 p-3 bg-green-900/50 border border-green-700 rounded-lg text-green-200"
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+              >
+                {success}
               </motion.div>
             )}
 
@@ -227,7 +246,7 @@ const AdminRegister = () => {
                     </svg>
                     Processing...
                   </span>
-                ) : 'Register'}
+                ) : 'Create Admin'}
               </motion.button>
             </form>
 
@@ -237,7 +256,7 @@ const AdminRegister = () => {
               animate={{ opacity: 1 }}
               transition={{ delay: 0.8 }}
             >
-              <p>Already have an account? <Link href="/admin/login" className="text-purple-400 hover:text-purple-300 transition-colors">Login here</Link></p>
+              <p>Return to <Link href="/admin/dashboard" className="text-purple-400 hover:text-purple-300 transition-colors">Dashboard</Link></p>
             </motion.div>
           </div>
         </div>
@@ -251,7 +270,6 @@ const AdminRegister = () => {
       >
         <p>© {new Date().getFullYear()} Admin Portal. All rights reserved.</p>
       </motion.div>
-    
     </div>
   );
 };

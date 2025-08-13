@@ -129,11 +129,11 @@ export default function CloudinaryUploader() {
   }, [error, success]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 py-8 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-[#030712] py-8 px-4  sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-8 sm:mb-12">
+        <div className="text-center mb-8 sm:mb-12 pt-5">
           <motion.h1 
-            className="text-3xl font-extrabold text-gray-900 sm:text-4xl"
+            className="text-3xl font-extrabold text-white sm:text-4xl"
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
@@ -141,7 +141,7 @@ export default function CloudinaryUploader() {
             Cloudinary Photo Gallery
           </motion.h1>
           <motion.p 
-            className="mt-3 text-lg sm:text-xl text-gray-500"
+            className="mt-3 text-lg sm:text-xl text-gray-300"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.2 }}
@@ -158,7 +158,7 @@ export default function CloudinaryUploader() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.3 }}
-              className="mb-6 p-4 bg-red-50 border-l-4 border-red-500 text-red-700 rounded"
+              className="mb-6 p-4 bg-red-900/50 border-l-4 border-red-500 text-red-100 rounded"
             >
               <p>{error}</p>
             </motion.div>
@@ -169,7 +169,7 @@ export default function CloudinaryUploader() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.3 }}
-              className="mb-6 p-4 bg-green-50 border-l-4 border-green-500 text-green-700 rounded"
+              className="mb-6 p-4 bg-green-900/50 border-l-4 border-green-500 text-green-100 rounded"
             >
               <p>{success}</p>
             </motion.div>
@@ -184,8 +184,8 @@ export default function CloudinaryUploader() {
           transition={{ duration: 0.5 }}
           className={`border-2 border-dashed rounded-xl p-6 sm:p-8 mb-8 sm:mb-12 text-center transition-all duration-300 ${
             isDragActive 
-              ? 'border-indigo-500 bg-indigo-50 shadow-lg' 
-              : 'border-gray-300 hover:border-indigo-400 hover:bg-indigo-50 hover:shadow-md'
+              ? 'border-indigo-500 bg-indigo-900/20 shadow-lg' 
+              : 'border-gray-700 hover:border-indigo-400 hover:bg-gray-800/50 hover:shadow-md'
           }`}
         >
           <input {...getInputProps()} />
@@ -196,7 +196,7 @@ export default function CloudinaryUploader() {
             >
               <svg
                 className={`mx-auto h-10 w-10 sm:h-12 sm:w-12 ${
-                  isDragActive ? 'text-indigo-500' : 'text-gray-400'
+                  isDragActive ? 'text-indigo-400' : 'text-gray-500'
                 }`}
                 stroke="currentColor"
                 fill="none"
@@ -211,12 +211,12 @@ export default function CloudinaryUploader() {
                 />
               </svg>
             </motion.div>
-            <div className="flex flex-col sm:flex-row justify-center items-center text-sm text-gray-600 gap-1">
-              <button className="relative cursor-pointer rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none">
+            <div className="flex flex-col sm:flex-row justify-center items-center text-sm text-gray-400 gap-1">
+              <button className="relative cursor-pointer rounded-md font-medium text-indigo-400 hover:text-indigo-300 focus-within:outline-none">
                 <span>Upload files</span>
                 <input type="file" className="sr-only" />
               </button>
-              <p className="text-gray-500">or drag and drop</p>
+              <p className="text-gray-400">or drag and drop</p>
             </div>
             <p className="text-xs text-gray-500">
               PNG, JPG, WEBP up to 10MB (max 10 files)
@@ -234,16 +234,16 @@ export default function CloudinaryUploader() {
             transition={{ duration: 0.3 }}
           >
             <div className="flex justify-between mb-1">
-              <span className="text-sm font-medium text-indigo-700">
+              <span className="text-sm font-medium text-indigo-400">
                 Uploading...
               </span>
-              <span className="text-sm font-medium text-gray-500">
+              <span className="text-sm font-medium text-gray-400">
                 {progress}%
               </span>
             </div>
-            <div className="w-full bg-gray-200 rounded-full h-2.5 overflow-hidden">
+            <div className="w-full bg-gray-700 rounded-full h-2.5 overflow-hidden">
               <motion.div
-                className="bg-indigo-600 h-2.5 rounded-full"
+                className="bg-indigo-500 h-2.5 rounded-full"
                 initial={{ width: 0 }}
                 animate={{ width: `${progress}%` }}
                 transition={{ duration: 0.5, ease: "easeOut" }}
@@ -269,7 +269,7 @@ export default function CloudinaryUploader() {
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.9 }}
                   transition={{ duration: 0.3 }}
-                  className="relative group overflow-hidden rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300"
+                  className="relative group overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 bg-gray-800"
                 >
                   <img
                     src={photo.url}
@@ -277,11 +277,11 @@ export default function CloudinaryUploader() {
                     className="w-full h-48 sm:h-56 object-cover"
                     loading="lazy"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-3 sm:p-4">
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-3 sm:p-4">
                     <button
                       onClick={() => handleDelete(photo.public_id)}
                       disabled={isDeleting}
-                      className="ml-auto bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded-md text-sm font-medium transition-colors duration-300 flex items-center"
+                      className="ml-auto bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded-md text-sm font-medium transition-colors duration-300 flex items-center"
                     >
                       {isDeleting ? (
                         <>
@@ -313,7 +313,7 @@ export default function CloudinaryUploader() {
             transition={{ duration: 0.5 }}
           >
             <svg
-              className="mx-auto h-12 w-12 text-gray-400"
+              className="mx-auto h-12 w-12 text-gray-600"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -327,10 +327,10 @@ export default function CloudinaryUploader() {
                 d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
               />
             </svg>
-            <h3 className="mt-2 text-lg font-medium text-gray-900">
+            <h3 className="mt-2 text-lg font-medium text-white">
               No photos uploaded yet
             </h3>
-            <p className="mt-1 text-sm text-gray-500">
+            <p className="mt-1 text-sm text-gray-400">
               Get started by uploading some images
             </p>
           </motion.div>
