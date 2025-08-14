@@ -118,7 +118,7 @@ const AdminDashboard = () => {
       bgColor: 'bg-blue-900',
       hoverBgColor: 'bg-blue-800',
       textColor: 'text-blue-100',
-      path: '/skillup/add-staff'
+      path: '/CS/staff/addstaff'
     },
     { 
       id: 'edit-student', 
