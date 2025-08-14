@@ -6,7 +6,7 @@ import { Bars3Icon, XMarkIcon, MoonIcon, SunIcon, ChevronDownIcon } from '@heroi
 import { FaPhone, FaInstagram, FaWhatsapp } from 'react-icons/fa';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-
+import { IoIosCall } from "react-icons/io";
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -56,7 +56,7 @@ const Navbar = () => {
   const socialLinks = [
     { 
       icon: <FaInstagram className="h-7 w-7" />, 
-      href: 'https://www.instagram.com/color_sense_cs/', 
+      href: 'https://www.instagram.com/colorsense_salon/', 
       name: 'Instagram' 
     },
     { 
@@ -215,7 +215,7 @@ const Navbar = () => {
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.9 }}
                 >
-                  <FaPhone className="h-7 w-7" /> {/* Increased icon size */}
+                  <IoIosCall className="h-8 w-8" /> {/* Increased icon size */}
                 </motion.button>
 
                 <AnimatePresence>
@@ -427,7 +427,7 @@ const Navbar = () => {
               whileTap={{ scale: 0.9 }}
               aria-label="Call"
             >
-              <FaPhone className="h-6 w-6" /> {/* Increased icon size */}
+              <IoIosCall className="h-6 w-6" /> {/* Increased icon size */}
             </motion.a>
             {socialLinks.map((social) => (
               <motion.a

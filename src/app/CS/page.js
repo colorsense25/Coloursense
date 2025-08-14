@@ -16,6 +16,7 @@ import {
 } from 'react-icons/fa';
 import { GrGallery } from "react-icons/gr";
 import { GrUserAdmin } from "react-icons/gr";
+import { GrAchievement } from "react-icons/gr";
 
 const AdminDashboard = () => {
   const [loading, setLoading] = useState(true);
@@ -127,7 +128,7 @@ const AdminDashboard = () => {
       bgColor: 'bg-green-900',
       hoverBgColor: 'bg-green-800',
       textColor: 'text-green-100',
-      path: '/skillup/students/edit-student'
+      path: '/CS/staff/editStaff'
     },
     { 
       id: 'edit-staff', 
@@ -136,7 +137,7 @@ const AdminDashboard = () => {
       bgColor: 'bg-yellow-900',
       hoverBgColor: 'bg-yellow-800',
       textColor: 'text-yellow-100',
-      path: '/skillup/edit-staff'
+      path: '/CS/staff/editStaff'
     },
     { 
       id: 'edit-gallery', 
@@ -158,12 +159,12 @@ const AdminDashboard = () => {
     },
     { 
       id: 'certificates', 
-      title: 'Certificates', 
-      icon: <FaCertificate className="text-2xl md:text-3xl lg:text-4xl" />,
+      title: 'Add Achievements', 
+      icon: <GrAchievement className="text-2xl md:text-3xl lg:text-4xl" />,
       bgColor: 'bg-pink-900',
       hoverBgColor: 'bg-pink-800',
       textColor: 'text-pink-100',
-      path: '/skillup/certificate'
+      path: '/CS/addAchievements'
     }
   ];
 
