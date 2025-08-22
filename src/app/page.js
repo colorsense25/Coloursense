@@ -301,7 +301,7 @@ export default function Home() {
             viewport={{ once: true }}
           >
             <Image
-              src="https://res.cloudinary.com/dtg4pxws2/image/upload/v1755027790/20250813_0111_Punjabi_Salon_Team_simple_compose_01k2fwpa6ze41r143jd0zn1keq_xzltsf.png"
+              src="https://res.cloudinary.com/dtg4pxws2/image/upload/v1755847860/WhatsApp_Image_2025-08-22_at_12.41.43_PM_kxswrf.jpg"
               alt="Color Sense Team"
               fill
               className="object-cover object-center"
