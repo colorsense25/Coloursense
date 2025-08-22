@@ -109,14 +109,14 @@ const Gallery = () => {
   }
 
   return (
-    <div className="min-h-screen  dark:bg-[#ffffff]  px-4 sm:px-6  sm:py-10 lg:px-8 transition-colors duration-300">
+    <div className="min-h-screen  dark:bg-[#030712]  px-4 sm:px-6  sm:py-10 lg:px-8 transition-colors duration-300">
       <div className="max-w-7xl mx-auto">
             <div className="flex items-center justify-center w-full">
             <motion.h1
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
-              className="text-3xl font-bold text-gray-800 dark:text-white pt-7 pb-7"
+              className="text-3xl font-bold  text-white pt-7 pb-7"
             >
               Photo Gallery
             </motion.h1>
