@@ -288,7 +288,7 @@ const About = () => {
             </div>
           </motion.div>
 
-                    {/* Stylist Card 1 */}
+                    {/* Stylist Card 7 */}
                     <motion.div 
             variants={item}
             whileHover={{ y: -10 }}
@@ -296,7 +296,7 @@ const About = () => {
           >
            <div className="relative rounded-2xl shadow-xl overflow-hidden w-full h-[800px] sm:h-[500px] lg:h-[370px] group">
               <Image
-                src="https://res.cloudinary.com/dtg4pxws2/image/upload/v1755845511/WhatsApp_Image_2025-08-22_at_12.19.52_PM_nn6vjo.jpg"
+                src="https://res.cloudinary.com/dtg4pxws2/image/upload/v1755852497/WhatsApp_Image_2025-08-22_at_2.11.45_PM_2_n4cowd.jpg"
                 alt="Emma Chen"
                 fill
                 className="h-[500px]"
@@ -309,7 +309,7 @@ const About = () => {
             </div>
           </motion.div>
 
-                    {/* Stylist Card 1 */}
+                    {/* Stylist Card 8 */}
                     <motion.div 
             variants={item}
             whileHover={{ y: -10 }}
@@ -317,7 +317,7 @@ const About = () => {
           >
            <div className="relative rounded-2xl shadow-xl overflow-hidden w-full h-[800px] sm:h-[500px] lg:h-[370px] group">
               <Image
-                src="https://res.cloudinary.com/dtg4pxws2/image/upload/v1755845511/WhatsApp_Image_2025-08-22_at_12.19.52_PM_nn6vjo.jpg"
+                src="https://res.cloudinary.com/dtg4pxws2/image/upload/v1755852497/WhatsApp_Image_2025-08-22_at_2.11.45_PM_3_yiiabm.jpg"
                 alt="Emma Chen"
                 fill
                 className="h-[500px]"
