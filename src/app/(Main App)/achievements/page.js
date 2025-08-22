@@ -15,6 +15,21 @@ const AchievementsPage = () => {
   const [sortOrder, setSortOrder] = useState(-1);
   const [searchQuery, setSearchQuery] = useState('');
   const [filterOpen, setFilterOpen] = useState(false);
+  // Image sizing state
+  const [imageWidth, setImageWidth] = useState(800);
+  const [imageHeight, setImageHeight] = useState(600);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   useEffect(() => {
     const fetchAchievements = async () => {
@@ -126,6 +141,8 @@ const AchievementsPage = () => {
           </div>
         </motion.div>
 
+
+
         {/* Achievements Grid */}
         {loading ? (
           <div className="grid grid-cols-1 gap-8">
@@ -138,8 +155,19 @@ const AchievementsPage = () => {
                 className="bg-gray-800 rounded-xl overflow-hidden shadow-lg"
               >
                 <div className="flex flex-col md:flex-row">
-                  <Skeleton height={300} className="w-full md:w-1/3" />
-                  <div className="p-6 w-full md:w-2/3">
+                  <div 
+                    className="flex-shrink-0 w-full md:w-auto" 
+                    style={{ 
+                      width: isMobile ? '100%' : `${imageWidth}px`, 
+                      height: isMobile ? '300px' : `${imageHeight}px` 
+                    }}
+                  >
+                    <Skeleton 
+                      height={isMobile ? 300 : imageHeight} 
+                      width={isMobile ? '100%' : imageWidth} 
+                    />
+                  </div>
+                  <div className="flex-1 p-6">
                     <Skeleton count={4} />
                   </div>
                 </div>
@@ -159,18 +187,28 @@ const AchievementsPage = () => {
                   className="bg-gray-800 rounded-xl overflow-hidden shadow-lg border border-gray-700 hover:border-silver-500 transition-all"
                 >
                   <div className="flex flex-col md:flex-row">
-                    {/* Photo Section - Full Height */}
-                    <div className="w-full md:w-2/5 lg:w-1/3 relative group overflow-hidden">
+                    {/* Photo Section - Customizable Size */}
+                    <div 
+                      className="relative group overflow-hidden flex-shrink-0 w-full md:w-auto" 
+                                             style={{ 
+                         width: isMobile ? '100%' : `${imageWidth}px`, 
+                         height: isMobile ? '300px' : `${imageHeight}px` 
+                       }}
+                    >
                       <img
                         src={achievement.photo.url}
                         alt={achievement.title}
-                        className="w-full h-64 md:h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        style={{ 
+                          width: isMobile ? '100%' : `${imageWidth}px`, 
+                          height: isMobile ? '300px' : `${imageHeight}px` 
+                        }}
+                        className="object-cover transition-transform duration-500 group-hover:scale-105"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-gray-900/30 to-transparent" />
                     </div>
 
                     {/* Details Section */}
-                    <div className="w-full md:w-3/5 lg:w-2/3 p-6">
+                    <div className="flex-1 p-6">
                       <div className="flex flex-col h-full">
                         <div className="mb-4">
                           <div className="flex items-center gap-2 text-silver-400 mb-2">

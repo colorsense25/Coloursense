@@ -55,12 +55,12 @@ const AdminDashboard = () => {
           setAdminName(parsedData.name || 'Admin');
         }
 
-        const [totalRes, activeRes, certifiedRes, staffRes] = await Promise.all([
-          fetch('/api/admin/stats?type=total', { method: 'GET' }),
-          fetch('/api/admin/stats?type=active', { method: 'GET' }),
-          fetch('/api/admin/stats?type=certified', { method: 'GET' }),
-          fetch('/api/admin/stats?type=staff', { method: 'GET' }),
-        ]);
+        // const [totalRes, activeRes, certifiedRes, staffRes] = await Promise.all([
+        //   fetch('/api/admin/stats?type=total', { method: 'GET' }),
+        //   fetch('/api/admin/stats?type=active', { method: 'GET' }),
+        //   fetch('/api/admin/stats?type=certified', { method: 'GET' }),
+        //   fetch('/api/admin/stats?type=staff', { method: 'GET' }),
+        // ]);
 
         const errors = [];
         if (!totalRes.ok) errors.push(`Total: ${totalRes.status}`);
@@ -76,12 +76,12 @@ const AdminDashboard = () => {
         const certifiedData = await certifiedRes.json();
         const staffData = await staffRes.json();
 
-        setStats({
-          totalStudents: totalData.data?.totalStudents || 0,
-          activeStudents: activeData.data?.activeStudents || 0,
-          certifiedStudents: certifiedData.data?.certifiedStudents || 0,
-          totalStaff: staffData.data?.certifiedStaff || staffData.data?.totalStaff || 0,
-        });
+        // setStats({
+        //   totalStudents: totalData.data?.totalStudents || 0,
+        //   activeStudents: activeData.data?.activeStudents || 0,
+        //   certifiedStudents: certifiedData.data?.certifiedStudents || 0,
+        //   totalStaff: staffData.data?.certifiedStaff || staffData.data?.totalStaff || 0,
+        // });
       } catch (error) {
         console.error('Error fetching stats:', error);
         setStatsError(error.message || 'Failed to load data');
@@ -306,7 +306,7 @@ const AdminDashboard = () => {
           </p>
           
           {statsError ? (
-            <div className="text-red-400 text-center mt-4">Error: {statsError}</div>
+            <div className="text-red-400 text-center mt-4"></div>
           ) : (
             <motion.div 
               initial={{ scale: 0.9, opacity: 0 }}
@@ -314,7 +314,7 @@ const AdminDashboard = () => {
               transition={{ delay: 0.5 }}
               className="mt-4 grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-4"
             >
-              <div className="bg-yellow-900 bg-opacity-50 p-2 sm:p-4 rounded-lg border border-yellow-800">
+              {/* <div className="bg-yellow-900 bg-opacity-50 p-2 sm:p-4 rounded-lg border border-yellow-800">
                 <p className="text-xs sm:text-sm text-yellow-300">Active Students</p>
                 <p className="text-lg sm:text-2xl font-bold text-yellow-100">{stats.activeStudents}</p>
               </div>
@@ -329,7 +329,7 @@ const AdminDashboard = () => {
               <div className="bg-green-900 bg-opacity-50 p-2 sm:p-4 rounded-lg border border-green-800">
                 <p className="text-xs sm:text-sm text-green-300">Staff</p>
                 <p className="text-lg sm:text-2xl font-bold text-green-100">{stats.totalStaff}</p>
-              </div>
+              </div> */}
             </motion.div>
           )}
         </motion.div>

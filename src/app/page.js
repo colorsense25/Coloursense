@@ -374,17 +374,9 @@ export default function Home() {
                 Luxury hair salon specializing in personalized color and cutting services.
               </p>
               <div className="flex space-x-4">
-                <a href="#" className="text-gray-400 hover:text-white transition-colors">
-                  <span className="sr-only">Facebook</span>
-                  <FaFacebook className="h-5 w-5 md:h-6 md:w-6" />
-                </a>
-                <a href="#" className="text-gray-400 hover:text-white transition-colors">
+                <a href="https://www.instagram.com/colorsense_salon/" className="text-gray-400 hover:text-white transition-colors">
                   <span className="sr-only">Instagram</span>
                   <FaInstagram className="h-5 w-5 md:h-6 md:w-6" />
-                </a>
-                <a href="#" className="text-gray-400 hover:text-white transition-colors">
-                  <span className="sr-only">Twitter</span>
-                  <FaTwitter className="h-5 w-5 md:h-6 md:w-6" />
                 </a>
               </div>
             </div>
@@ -420,16 +412,16 @@ export default function Home() {
               <address className="text-gray-400 not-italic text-sm md:text-base">
                 <p className="mb-2 md:mb-3 flex items-center">
                   <FaMapMarkerAlt className="mr-2 text-xs md:text-sm" />
-                  123 Beauty Street
+                  Nangal Rd - Deep Colony St,
                 </p>
-                <p className="mb-2 md:mb-3">New York, NY 10001</p>
+                <p className="mb-2 md:mb-3"> near Arya School Garhshankar, Punjab 144527</p>
                 <p className="mb-2 md:mb-3 flex items-center">
                   <FaPhone className="mr-2 text-xs md:text-sm" />
-                  (555) 123-4567
+                  +91 7889287161
                 </p>
                 <p className="flex items-center">
                   <FaEnvelope className="mr-2 text-xs md:text-sm" />
-                  info@colorsense.com
+                  colorsensesalon@gmail.com
                 </p>
               </address>
             </div>

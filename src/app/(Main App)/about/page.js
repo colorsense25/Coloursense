@@ -103,37 +103,46 @@ const About = () => {
               <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-silver-300" viewBox="0 0 20 20" fill="currentColor">
                 <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
               </svg>
-              123 Beauty Avenue, Downtown District, Cosmopolis
+              Nangal Rd - Deep Colony St, near Arya School, Garhshankar, Punjab 144527
             </p>
           </motion.div>
 
-          <motion.div 
-            variants={item}
-            className="grid grid-cols-1 lg:grid-cols-2 gap-8 h-[500px] sm:h-[600px] w-full"
-          >
-            <div className="relative rounded-xl shadow-lg overflow-hidden w-full h-full group">
-              <Image
-                src="https://res.cloudinary.com/dtg4pxws2/image/upload/v1755030750/20250813_0201_Punjabi_Salon_Exterior_simple_compose_01k2fzjjzne2avpb7nd5s4wneb_bazdl3.png"
-                alt="Luxury salon interior"
-                fill
-                className="object-cover group-hover:scale-105 transition-transform duration-500 grayscale hover:grayscale-0"
-                priority
-              />
-              <div className="absolute inset-0 bg-black bg-opacity-30 group-hover:bg-opacity-10 transition-all duration-500" />
-            </div>
-            <div className="relative rounded-xl shadow-lg overflow-hidden w-full h-full border border-gray-800">
-              <iframe
-                title="Salon Location"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3412.190656270404!2d76.14374797495266!3d31.21544686214489!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x391abfae872e3e05%3A0xc23ca808c7811e18!2sColour%20Sense%20Unisex%20Salon%20%26%20Academy!5e0!3m2!1sen!2sin!4v1755030438575!5m2!1sen!2sin"
-                className="w-full h-full"
-                allowFullScreen
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-              />
-            </div>
-          </motion.div>
-        </div>
-      </motion.section>
+          <motion.div
+              variants={item}
+              className="grid grid-cols-1 lg:grid-cols-2 gap-8 w-full max-w-6xl mx-auto"
+            >
+              {/* Salon Image */}
+              <div className="relative rounded-2xl shadow-xl overflow-hidden w-full h-[800px] sm:h-[500px] lg:h-[950px] group">
+                <Image
+                  src="https://res.cloudinary.com/dtg4pxws2/image/upload/v1755841551/20250822_1106_Enhanced_Salon_Facade_remix_01k384ape5eaavk3qn9dbsz6nr_ezqqq3.png"
+                  alt="Luxury salon interior"
+                  fill
+                  className="object-cover transition-transform duration-700 ease-in-out group-hover:scale-110"
+                  priority
+                />
+                {/* Overlay effect */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent opacity-50 group-hover:opacity-30 transition-opacity"></div>
+                <div className="absolute bottom-4 left-4 text-white z-10">
+                  <h2 className="text-xl font-semibold">Colour Sense Salon</h2>
+                  <p className="text-sm opacity-90">Unisex Salon & Academy</p>
+                </div>
+              </div>
+
+              {/* Google Maps */}
+              <div className="relative rounded-2xl shadow-xl overflow-hidden w-full h-[400px] sm:h-[500px] lg:h-[950px] border border-gray-700">
+                <iframe
+                  title="Salon Location"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3412.190656270404!2d76.14374797495266!3d31.21544686214489!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x391abfae872e3e05%3A0xc23ca808c7811e18!2sColour%20Sense%20Unisex%20Salon%20%26%20Academy!5e0!3m2!1sen!2sin!4v1755030438575!5m2!1sen!2sin"
+                  className="w-full h-full"
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                />
+              </div>
+            </motion.div>
+
+                    </div>
+            </motion.section>
 
       {/* Our Artists Section */}
       <motion.section 
@@ -159,17 +168,17 @@ const About = () => {
           >
             <div className="relative pt-[100%] overflow-hidden">
               <Image
-                src="https://res.cloudinary.com/dufxj1sau/image/upload/v1712345679/stylist1-dark.jpg"
-                alt="Sophia Rodriguez"
+                src="https://res.cloudinary.com/dufxj1sau/image/upload/v1712345680/stylist2-dark.jpg"
+                alt="Emma Chen"
                 fill
                 className="object-cover hover:scale-105 transition-transform duration-500 grayscale hover:grayscale-0"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-70" />
             </div>
             <div className="p-6 text-center">
-              <h3 className="text-xl font-semibold text-silver-300 mb-2">Sophia Rodriguez</h3>
-              <p className="text-gray-400 text-sm font-medium">Master Colorist</p>
-              <p className="text-gray-500 text-xs mt-2">10+ years experience</p>
+              <h3 className="text-xl font-semibold text-silver-300 mb-2">Emma Chen</h3>
+              <p className="text-gray-400 text-sm font-medium">Cutting Specialist</p>
+              <p className="text-gray-500 text-xs mt-2">8+ years experience</p>
             </div>
           </motion.div>
 
@@ -219,6 +228,92 @@ const About = () => {
 
           {/* Stylist Card 4 */}
           <motion.div 
+            variants={item}
+            whileHover={{ y: -10 }}
+            className="bg-gray-900 rounded-xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-300 border border-gray-800 hover:border-silver-300"
+          >
+            <div className="relative pt-[100%] overflow-hidden">
+              <Image
+                src="https://res.cloudinary.com/dufxj1sau/image/upload/v1712345682/stylist4-dark.jpg"
+                alt="Olivia Martinez"
+                fill
+                className="object-cover hover:scale-105 transition-transform duration-500 grayscale hover:grayscale-0"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-70" />
+            </div>
+            <div className="p-6 text-center">
+              <h3 className="text-xl font-semibold text-silver-300 mb-2">Olivia Martinez</h3>
+              <p className="text-gray-400 text-sm font-medium">Bridal Specialist</p>
+              <p className="text-gray-500 text-xs mt-2">15+ years experience</p>
+            </div>
+          </motion.div>
+
+          <motion.div 
+            variants={item}
+            whileHover={{ y: -10 }}
+            className="bg-gray-900 rounded-xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-300 border border-gray-800 hover:border-silver-300"
+          >
+            <div className="relative pt-[100%] overflow-hidden">
+              <Image
+                src="https://res.cloudinary.com/dufxj1sau/image/upload/v1712345682/stylist4-dark.jpg"
+                alt="Olivia Martinez"
+                fill
+                className="object-cover hover:scale-105 transition-transform duration-500 grayscale hover:grayscale-0"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-70" />
+            </div>
+            <div className="p-6 text-center">
+              <h3 className="text-xl font-semibold text-silver-300 mb-2">Olivia Martinez</h3>
+              <p className="text-gray-400 text-sm font-medium">Bridal Specialist</p>
+              <p className="text-gray-500 text-xs mt-2">15+ years experience</p>
+            </div>
+          </motion.div>
+
+          <motion.div 
+            variants={item}
+            whileHover={{ y: -10 }}
+            className="bg-gray-900 rounded-xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-300 border border-gray-800 hover:border-silver-300"
+          >
+            <div className="relative pt-[100%] overflow-hidden">
+              <Image
+                src="https://res.cloudinary.com/dufxj1sau/image/upload/v1712345682/stylist4-dark.jpg"
+                alt="Olivia Martinez"
+                fill
+                className="object-cover hover:scale-105 transition-transform duration-500 grayscale hover:grayscale-0"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-70" />
+            </div>
+            <div className="p-6 text-center">
+              <h3 className="text-xl font-semibold text-silver-300 mb-2">Olivia Martinez</h3>
+              <p className="text-gray-400 text-sm font-medium">Bridal Specialist</p>
+              <p className="text-gray-500 text-xs mt-2">15+ years experience</p>
+            </div>
+          </motion.div>
+
+
+          <motion.div 
+            variants={item}
+            whileHover={{ y: -10 }}
+            className="bg-gray-900 rounded-xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-300 border border-gray-800 hover:border-silver-300"
+          >
+            <div className="relative pt-[100%] overflow-hidden">
+              <Image
+                src="https://res.cloudinary.com/dufxj1sau/image/upload/v1712345682/stylist4-dark.jpg"
+                alt="Olivia Martinez"
+                fill
+                className="object-cover hover:scale-105 transition-transform duration-500 grayscale hover:grayscale-0"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-70" />
+            </div>
+            <div className="p-6 text-center">
+              <h3 className="text-xl font-semibold text-silver-300 mb-2">Olivia Martinez</h3>
+              <p className="text-gray-400 text-sm font-medium">Bridal Specialist</p>
+              <p className="text-gray-500 text-xs mt-2">15+ years experience</p>
+            </div>
+          </motion.div>
+
+
+                    <motion.div 
             variants={item}
             whileHover={{ y: -10 }}
             className="bg-gray-900 rounded-xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-300 border border-gray-800 hover:border-silver-300"
