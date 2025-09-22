@@ -160,7 +160,28 @@ const About = () => {
         </motion.p>
         
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 px-4 sm:px-8">
-          {/* Stylist Card 1 */}
+
+        <motion.div 
+            variants={item}
+            whileHover={{ y: -10 }}
+            className="bg-gray-900 rounded-xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-300 border border-gray-800 hover:border-silver-300"
+          >
+           <div className="relative rounded-2xl shadow-xl overflow-hidden w-full h-[800px] sm:h-[500px] lg:h-[370px] group">
+              <Image
+                src="https://res.cloudinary.com/dtg4pxws2/image/upload/v1755852497/WhatsApp_Image_2025-08-22_at_2.11.45_PM_3_yiiabm.jpg"
+                alt="Emma Chen"
+                fill
+                className="h-[500px]"
+              />
+            </div>
+            <div className="p-6 text-center">
+              <h3 className="text-xl font-semibold text-silver-300 mb-2">Boss</h3>
+              <p className="text-gray-400 text-sm font-medium">Cutting Specialist</p>
+              <p className="text-gray-500 text-xs mt-2">8+ years experience</p>
+            </div>
+          </motion.div>
+
+
           <motion.div 
             variants={item}
             whileHover={{ y: -10 }}
@@ -168,21 +189,19 @@ const About = () => {
           >
            <div className="relative rounded-2xl shadow-xl overflow-hidden w-full h-[800px] sm:h-[500px] lg:h-[370px] group">
               <Image
-                src="https://res.cloudinary.com/dtg4pxws2/image/upload/v1755845511/WhatsApp_Image_2025-08-22_at_12.19.52_PM_nn6vjo.jpg"
+                src="https://res.cloudinary.com/dtg4pxws2/image/upload/v1756118219/WhatsApp_Image_2025-08-25_at_4.02.26_PM_bbyfqk.jpg"
                 alt="Emma Chen"
                 fill
                 className="h-[500px]"
               />
             </div>
             <div className="p-6 text-center">
-              <h3 className="text-xl font-semibold text-silver-300 mb-2">Emma Chen</h3>
-              <p className="text-gray-400 text-sm font-medium">Cutting Specialist</p>
-              <p className="text-gray-500 text-xs mt-2">8+ years experience</p>
+              <h3 className="text-xl font-semibold text-silver-300 mb-2">Sapna</h3>
+              <p className="text-gray-400 text-sm font-medium">Nails & Hair</p>
+              <p className="text-gray-500 text-xs mt-2">6+ Months experience</p>
             </div>
           </motion.div>
-                    
-                    
-          {/* Stylist Card 2 */}
+
           <motion.div 
             variants={item}
             whileHover={{ y: -10 }}
@@ -197,53 +216,23 @@ const About = () => {
               />
             </div>
             <div className="p-6 text-center">
-              <h3 className="text-xl font-semibold text-silver-300 mb-2">Emma Chen</h3>
+              <h3 className="text-xl font-semibold text-silver-300 mb-2">Prinka</h3>
               <p className="text-gray-400 text-sm font-medium">Cutting Specialist</p>
-              <p className="text-gray-500 text-xs mt-2">8+ years experience</p>
+              <p className="text-gray-500 text-xs mt-2">6 Months experience</p>
             </div>
           </motion.div>
+
+          {/* Stylist Card 1 */}
+
+                    
+                    
+          {/* Stylist Card 2 */}
+
 
           {/* Stylist Card 3 */}
-          <motion.div 
-            variants={item}
-            whileHover={{ y: -10 }}
-            className="bg-gray-900 rounded-xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-300 border border-gray-800 hover:border-silver-300"
-          >
-           <div className="relative rounded-2xl shadow-xl overflow-hidden w-full h-[800px] sm:h-[500px] lg:h-[370px] group">
-              <Image
-                src="https://res.cloudinary.com/dtg4pxws2/image/upload/v1755845510/WhatsApp_Image_2025-08-22_at_12.19.53_PM_vyyawp.jpg"
-                alt="Emma Chen"
-                fill
-                className="h-[500px]"
-              />
-            </div>
-            <div className="p-6 text-center">
-              <h3 className="text-xl font-semibold text-silver-300 mb-2">Emma Chen</h3>
-              <p className="text-gray-400 text-sm font-medium">Cutting Specialist</p>
-              <p className="text-gray-500 text-xs mt-2">8+ years experience</p>
-            </div>
-          </motion.div>
-
+   
           {/* Stylist Card 4 */}
-            <motion.div 
-            variants={item}
-            whileHover={{ y: -10 }}
-            className="bg-gray-900 rounded-xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-300 border border-gray-800 hover:border-silver-300"
-          >
-           <div className="relative rounded-2xl shadow-xl overflow-hidden w-full h-[800px] sm:h-[500px] lg:h-[370px] group">
-              <Image
-                src="https://res.cloudinary.com/dtg4pxws2/image/upload/v1755845510/WhatsApp_Image_2025-08-22_at_12.19.52_PM_2_uadcwv.jpg"
-                alt="Emma Chen"
-                fill
-                className="h-[500px]"
-              />
-            </div>
-            <div className="p-6 text-center">
-              <h3 className="text-xl font-semibold text-silver-300 mb-2">Emma Chen</h3>
-              <p className="text-gray-400 text-sm font-medium">Cutting Specialist</p>
-              <p className="text-gray-500 text-xs mt-2">8+ years experience</p>
-            </div>
-          </motion.div>
+
 
 
             {/* Stylist Card 5 */}
@@ -261,14 +250,14 @@ const About = () => {
               />
             </div>
             <div className="p-6 text-center">
-              <h3 className="text-xl font-semibold text-silver-300 mb-2">Emma Chen</h3>
-              <p className="text-gray-400 text-sm font-medium">Cutting Specialist</p>
-              <p className="text-gray-500 text-xs mt-2">8+ years experience</p>
+              <h3 className="text-xl font-semibold text-silver-300 mb-2">Love</h3>
+              <p className="text-gray-400 text-sm font-medium">Gents Hair Stylist</p>
+              <p className="text-gray-500 text-xs mt-2">6 Months experience</p>
             </div>
           </motion.div>
 
-            {/* Stylist Card 6 */}
-            <motion.div 
+
+          <motion.div 
             variants={item}
             whileHover={{ y: -10 }}
             className="bg-gray-900 rounded-xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-300 border border-gray-800 hover:border-silver-300"
@@ -282,11 +271,58 @@ const About = () => {
               />
             </div>
             <div className="p-6 text-center">
-              <h3 className="text-xl font-semibold text-silver-300 mb-2">Emma Chen</h3>
-              <p className="text-gray-400 text-sm font-medium">Cutting Specialist</p>
-              <p className="text-gray-500 text-xs mt-2">8+ years experience</p>
+            <h3 className="text-xl font-semibold text-silver-300 mb-2">Harshdeep Dhanda</h3>
+              <p className="text-gray-400 text-sm font-medium">Hair Stylist</p>
+              <p className="text-gray-500 text-xs mt-2">6+ Months experience</p>
             </div>
           </motion.div>
+
+
+
+          <motion.div 
+            variants={item}
+            whileHover={{ y: -10 }}
+            className="bg-gray-900 rounded-xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-300 border border-gray-800 hover:border-silver-300"
+          >
+           <div className="relative rounded-2xl shadow-xl overflow-hidden w-full h-[800px] sm:h-[500px] lg:h-[370px] group">
+              <Image
+                src="https://res.cloudinary.com/dtg4pxws2/image/upload/v1755845510/WhatsApp_Image_2025-08-22_at_12.19.52_PM_2_uadcwv.jpg"
+                alt="Emma Chen"
+                fill
+                className="h-[500px]"
+              />
+            </div>
+            <div className="p-6 text-center">
+              <h3 className="text-xl font-semibold text-silver-300 mb-2">Dinesh</h3>
+              <p className="text-gray-400 text-sm font-medium">Gents Hair Stylist</p>
+              <p className="text-gray-500 text-xs mt-2">6 Months experience</p>
+            </div>
+          </motion.div>
+
+            {/* Stylist Card 6 */}
+
+          <motion.div 
+            variants={item}
+            whileHover={{ y: -10 }}
+            className="bg-gray-900 rounded-xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-300 border border-gray-800 hover:border-silver-300"
+          >
+           <div className="relative rounded-2xl shadow-xl overflow-hidden w-full h-[800px] sm:h-[500px] lg:h-[370px] group">
+              <Image
+                src="https://res.cloudinary.com/dtg4pxws2/image/upload/v1755845510/WhatsApp_Image_2025-08-22_at_12.19.53_PM_vyyawp.jpg"
+                alt="Emma Chen"
+                fill
+                className="h-[500px]"
+              />
+            </div>
+            <div className="p-6 text-center">
+              <h3 className="text-xl font-semibold text-silver-300 mb-2">Ranjna Rai</h3>
+              <p className="text-gray-400 text-sm font-medium">Nails & Makeup</p>
+              <p className="text-gray-500 text-xs mt-2">6 Months experience</p>
+            </div>
+          </motion.div>
+
+
+          
 
                     {/* Stylist Card 7 */}
                     <motion.div 
@@ -296,39 +332,21 @@ const About = () => {
           >
            <div className="relative rounded-2xl shadow-xl overflow-hidden w-full h-[800px] sm:h-[500px] lg:h-[370px] group">
               <Image
-                src="https://res.cloudinary.com/dtg4pxws2/image/upload/v1755852497/WhatsApp_Image_2025-08-22_at_2.11.45_PM_2_n4cowd.jpg"
-                alt="Emma Chen"
+                src="https://res.cloudinary.com/dtg4pxws2/image/upload/v1755845511/WhatsApp_Image_2025-08-22_at_12.19.52_PM_nn6vjo.jpg"
+                alt="Jasleen Kaur"
                 fill
                 className="h-[500px]"
               />
             </div>
             <div className="p-6 text-center">
-              <h3 className="text-xl font-semibold text-silver-300 mb-2">Emma Chen</h3>
-              <p className="text-gray-400 text-sm font-medium">Cutting Specialist</p>
-              <p className="text-gray-500 text-xs mt-2">8+ years experience</p>
+              <h3 className="text-xl font-semibold text-silver-300 mb-2">Jasleen</h3>
+              <p className="text-gray-400 text-sm font-medium">Makeup & Butician</p>
+              <p className="text-gray-500 text-xs mt-2">1+ years experience</p>
             </div>
           </motion.div>
 
                     {/* Stylist Card 8 */}
-                    <motion.div 
-            variants={item}
-            whileHover={{ y: -10 }}
-            className="bg-gray-900 rounded-xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-300 border border-gray-800 hover:border-silver-300"
-          >
-           <div className="relative rounded-2xl shadow-xl overflow-hidden w-full h-[800px] sm:h-[500px] lg:h-[370px] group">
-              <Image
-                src="https://res.cloudinary.com/dtg4pxws2/image/upload/v1755852497/WhatsApp_Image_2025-08-22_at_2.11.45_PM_3_yiiabm.jpg"
-                alt="Emma Chen"
-                fill
-                className="h-[500px]"
-              />
-            </div>
-            <div className="p-6 text-center">
-              <h3 className="text-xl font-semibold text-silver-300 mb-2">Emma Chen</h3>
-              <p className="text-gray-400 text-sm font-medium">Cutting Specialist</p>
-              <p className="text-gray-500 text-xs mt-2">8+ years experience</p>
-            </div>
-          </motion.div>
+ 
         </div>
       </motion.section>
     </div>

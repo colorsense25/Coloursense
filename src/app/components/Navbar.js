@@ -47,7 +47,7 @@ const Navbar = () => {
       name: 'Verification', 
       href: '#', 
       dropdown: [
-        { name: 'Staff', href: '/staff' },
+        { name: 'Staff', href: '/Varify/staff' },
         { name: 'Student', href: '/student' }
       ] 
     },

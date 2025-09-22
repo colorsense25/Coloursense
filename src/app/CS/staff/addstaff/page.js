@@ -1,4 +1,4 @@
-"use client"
+'use client'
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -10,10 +10,16 @@ const AddStaff = () => {
     JoinningData: '',
     Designation: '',
     DOB: '',
-    FatherName: '',
+    FatherNameORHusbandName: '',
     Address: '',
     LeavingDate: '',
+    WorkDuration: '',
+    gender: '',
+    qualification: ''
   });
+  const [photo, setPhoto] = useState(null);
+  const [photoPreview, setPhotoPreview] = useState('');
+  const [uploadingPhoto, setUploadingPhoto] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [showPopup, setShowPopup] = useState(false);
@@ -30,6 +36,31 @@ const AddStaff = () => {
     setFormData({ ...formData, [name]: value });
   };
 
+  const handlePhotoChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      // Validate file type
+      if (!file.type.startsWith('image/')) {
+        setError('Please select an image file');
+        return;
+      }
+
+      // Validate file size (5MB max)
+      if (file.size > 5 * 1024 * 1024) {
+        setError('Image size should be less than 5MB');
+        return;
+      }
+
+      setPhoto(file);
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        setPhotoPreview(e.target.result);
+      };
+      reader.readAsDataURL(file);
+      setError('');
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -37,10 +68,37 @@ const AddStaff = () => {
     setShowPopup(false);
 
     try {
-      const payload = { ...formData };
+      let photoObject = null;
+
+      // Upload to server-side Cloudinary endpoint if a photo is selected
+      if (photo) {
+        setUploadingPhoto(true);
+        const fd = new FormData();
+        fd.append('file', photo);
+        const uploadRes = await fetch('/api/admin/uploadPhotoAndDeletePhoto', {
+          method: 'POST',
+          body: fd,
+        });
+        if (!uploadRes.ok) {
+          const err = await uploadRes.json().catch(() => ({}));
+          throw new Error(err.error || 'Failed to upload photo');
+        }
+        const uploadData = await uploadRes.json();
+        photoObject = {
+          public_id: uploadData.public_id,
+          url: uploadData.url,
+        };
+        setUploadingPhoto(false);
+      }
+
+      const payload = {
+        ...formData,
+        photo: photoObject || undefined,
+      };
+
       if (!payload.LeavingDate) delete payload.LeavingDate;
 
-      const response = await fetch('/api/admin/staff/addstaff', {
+      const response = await fetch('/api/admin/manageStaff/addStaff', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -49,27 +107,41 @@ const AddStaff = () => {
       });
 
       if (!response.ok) {
-        throw new Error('Failed to add staff');
+        const errorData = await response.json().catch(() => ({}));
+        throw new Error(errorData.message || 'Failed to add staff');
       }
 
       const data = await response.json();
-      setGeneratedStaffId(data.StaffID);
+      setGeneratedStaffId(data.StaffID || data?.data?.StaffID);
       setShowPopup(true);
+
+      // Reset form
       setFormData({
         Name: '',
         JoinningData: '',
         Designation: '',
         DOB: '',
-        FatherName: '',
+        FatherNameORHusbandName: '',
         Address: '',
         LeavingDate: '',
+        WorkDuration: '',
+        gender: '',
+        qualification: ''
       });
+      setPhoto(null);
+      setPhotoPreview('');
     } catch (error) {
-      setError(error.response?.data?.message || 'Failed to add staff');
+      setError(error.message || 'Failed to add staff');
       console.error('Error adding staff:', error);
     } finally {
       setLoading(false);
+      setUploadingPhoto(false);
     }
+  };
+
+  const removePhoto = () => {
+    setPhoto(null);
+    setPhotoPreview('');
   };
 
   const handleGoToHome = () => router.push('/CS');
@@ -77,12 +149,12 @@ const AddStaff = () => {
   if (!isMounted) return null;
 
   return (
-    <div className="min-h-screen bg-[#030712] pt-12 px-4 py-6 flex items-center justify-center">
+    <div className="min-h-screen bg-[#030712] pt-12 pb-28 px-4 py-6 flex items-center justify-center">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="w-full max-w-md bg-gray-800 p-6 sm:p-8 rounded-xl shadow-2xl"
+        className="w-full max-w-2xl bg-gray-800 p-6 sm:p-8 rounded-xl shadow-2xl"
       >
         <motion.h1 
           className="text-2xl sm:text-3xl font-bold text-blue-400 text-center mb-6"
@@ -94,35 +166,126 @@ const AddStaff = () => {
         </motion.h1>
 
         <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
-          {[
-            { label: 'Name', name: 'Name', type: 'text', required: true },
-            { label: 'Joining Date', name: 'JoinningData', type: 'date', required: true },
-            { label: 'Designation', name: 'Designation', type: 'text', required: true },
-            { label: 'Date of Birth', name: 'DOB', type: 'date', required: true },
-            { label: "Father's Name", name: 'FatherName', type: 'text', required: true },
-            { label: 'Address', name: 'Address', type: 'text', required: true },
-          ].map((field, index) => (
-            <motion.div
-              key={field.name}
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1 + index * 0.05 }}
-            >
-              <label className="block text-gray-300 text-sm font-medium mb-1">
-                {field.label}
-              </label>
-              <input
-                type={field.type}
-                name={field.name}
-                required={field.required}
-                className="w-full px-4 py-2 sm:py-3 text-sm sm:text-base bg-gray-700 border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-200 placeholder-gray-400 disabled:opacity-50 transition-colors duration-200"
-                placeholder={`Enter ${field.label.toLowerCase()}`}
-                value={formData[field.name]}
-                onChange={handleChange}
-                disabled={loading}
-              />
-            </motion.div>
-          ))}
+          {/* Photo Upload Section */}
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.05 }}
+            className="flex flex-col items-center"
+          >
+            <label className="block text-gray-300 text-sm font-medium mb-3">
+              Staff Photo
+            </label>
+            
+            <div className="relative">
+              {photoPreview ? (
+                <div className="relative">
+                  <img 
+                    src={photoPreview} 
+                    alt="Preview" 
+                    className="w-32 h-32 rounded-full object-cover border-4 border-blue-500"
+                  />
+                  <button
+                    type="button"
+                    onClick={removePhoto}
+                    className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full p-1 hover:bg-red-600 transition"
+                  >
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                  </button>
+                </div>
+              ) : (
+                <label className="cursor-pointer">
+                  <div className="w-32 h-32 rounded-full border-4 border-dashed border-gray-600 flex items-center justify-center hover:border-blue-500 transition">
+                    <svg className="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                    </svg>
+                  </div>
+                  <input
+                    type="file"
+                    accept="image/*"
+                    onChange={handlePhotoChange}
+                    className="hidden"
+                    disabled={loading || uploadingPhoto}
+                  />
+                </label>
+              )}
+            </div>
+            <p className="text-xs text-gray-400 mt-2">JPEG, PNG, max 5MB</p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {[
+              { label: 'Name', name: 'Name', type: 'text', required: true },
+              { label: 'Joining Date', name: 'JoinningData', type: 'date', required: true },
+              { label: 'Designation', name: 'Designation', type: 'text', required: true },
+              { label: 'Date of Birth', name: 'DOB', type: 'date', required: true },
+              { label: "Father's Name / Husband's Name", name: 'FatherNameORHusbandName', type: 'text', required: true },
+              { label: 'Work Duration', name: 'WorkDuration', type: 'select', required: true, 
+                options: ['3 Months', '6 Months', '1 Year'] },
+              { label: 'Gender', name: 'gender', type: 'select', required: true, 
+                options: ['Male', 'Female', 'Other'] },
+              { label: 'Qualification', name: 'qualification', type: 'select', required: true, 
+                options: ['8th', '10th', '12th', 'Graduated'] },
+            ].map((field, index) => (
+              <motion.div
+                key={field.name}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.1 + index * 0.05 }}
+              >
+                <label className="block text-gray-300 text-sm font-medium mb-1">
+                  {field.label}
+                </label>
+                {field.type === 'select' ? (
+                  <select
+                    name={field.name}
+                    required={field.required}
+                    className="w-full px-4 py-2 sm:py-3 text-sm sm:text-base bg-gray-700 border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-200 disabled:opacity-50 transition-colors duration-200"
+                    value={formData[field.name]}
+                    onChange={handleChange}
+                    disabled={loading}
+                  >
+                    <option value="">Select {field.label}</option>
+                    {field.options.map(option => (
+                      <option key={option} value={option}>{option}</option>
+                    ))}
+                  </select>
+                ) : (
+                  <input
+                    type={field.type}
+                    name={field.name}
+                    required={field.required}
+                    className="w-full px-4 py-2 sm:py-3 text-sm sm:text-base bg-gray-700 border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-200 placeholder-gray-400 disabled:opacity-50 transition-colors duration-200"
+                    placeholder={`Enter ${field.label.toLowerCase()}`}
+                    value={formData[field.name]}
+                    onChange={handleChange}
+                    disabled={loading}
+                  />
+                )}
+              </motion.div>
+            ))}
+          </div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4 }}
+          >
+            <label className="block text-gray-300 text-sm font-medium mb-1">
+              Address
+            </label>
+            <textarea
+              name="Address"
+              rows={3}
+              className="w-full px-4 py-2 sm:py-3 text-sm sm:text-base bg-gray-700 border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-200 placeholder-gray-400 disabled:opacity-50 transition-colors duration-200"
+              placeholder="Enter address"
+              value={formData.Address}
+              onChange={handleChange}
+              disabled={loading}
+            />
+          </motion.div>
 
           <motion.div
             initial={{ opacity: 0, y: 10 }}
@@ -167,10 +330,10 @@ const AddStaff = () => {
           >
             <button
               type="submit"
-              disabled={loading}
+              disabled={loading || uploadingPhoto}
               className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 sm:py-3 px-4 rounded-lg font-medium transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center text-sm sm:text-base transform hover:scale-[1.01] active:scale-[0.99]"
             >
-              {loading ? (
+              {(loading || uploadingPhoto) ? (
                 <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                   <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                   <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
@@ -180,64 +343,63 @@ const AddStaff = () => {
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                     <path d="M8 9a3 3 0 100-6 3 3 0 000 6zM8 11a6 6 0 016 6H2a6 6 0 016-6z" />
                   </svg>
-                  Add Staff
+                  {uploadingPhoto ? 'Uploading Photo...' : 'Add Staff'}
                 </span>
               )}
             </button>
           </motion.div>
         </form>
+
         <AnimatePresence>
-            {showPopup && (
-                <motion.div
+          {showPopup && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 flex items-center justify-center z-50 p-4"
+            >
+              <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                className="fixed inset-0 flex items-center justify-center z-50 p-4"
-                >
-                {/* Blurred background overlay */}
-                <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    className="fixed inset-0 bg-blur bg-opacity-70 backdrop-blur-sm"
-                />
-                
-                {/* Popup content */}
-                <motion.div
-                    initial={{ scale: 0.9, y: 20 }}
-                    animate={{ scale: 1, y: 0 }}
-                    exit={{ scale: 0.9, y: 20 }}
-                    className="bg-gray-800 p-6 sm:p-8 rounded-lg shadow-xl max-w-md w-full border border-gray-700 relative z-10"
-                >
-                    <div className="flex items-center gap-3 mb-4">
-                    <div className="p-2 rounded-full bg-green-900/30">
-                        <svg className="w-6 h-6 text-green-400" fill="currentColor" viewBox="0 0 20 20">
-                        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                        </svg>
-                    </div>
-                    <h2 className="text-xl font-bold text-green-400">Success!</h2>
-                    </div>
-                    <p className="text-gray-300 mb-6">
-                    New staff member <strong className="text-white">{formData.Name || 'Staff'}</strong> has been added
-                    successfully. {generatedStaffId && (
-                        <span className="block mt-2 bg-gray-700 px-3 py-2 rounded-md text-blue-300 font-mono">
-                        Staff ID: {generatedStaffId}
-                        </span>
-                    )}
-                    </p>
-                    <button
-                    onClick={handleGoToHome}
-                    className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-lg font-medium transition-all duration-300 flex items-center justify-center gap-2"
-                    >
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                        <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
+                className="fixed inset-0 bg-black bg-opacity-70 backdrop-blur-sm"
+              />
+              
+              <motion.div
+                initial={{ scale: 0.9, y: 20 }}
+                animate={{ scale: 1, y: 0 }}
+                exit={{ scale: 0.9, y: 20 }}
+                className="bg-gray-800 p-6 sm:p-8 rounded-lg shadow-xl max-w-md w-full border border-gray-700 relative z-10"
+              >
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="p-2 rounded-full bg-blur">
+                    <svg className="w-6 h-6 text-green-400" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                     </svg>
-                    Go to Dashboard
-                    </button>
-                </motion.div>
-                </motion.div>
-            )}
-            </AnimatePresence>
+                  </div>
+                  <h2 className="text-xl font-bold text-green-400">Success!</h2>
+                </div>
+                <p className="text-gray-300 mb-6">
+                  New staff member <strong className="text-white">{formData.Name || 'Staff'}</strong> has been added
+                  successfully. {generatedStaffId && (
+                    <span className="block mt-2 bg-gray-700 px-3 py-2 rounded-md text-blue-300 font-mono">
+                      Staff ID: {generatedStaffId}
+                    </span>
+                  )}
+                </p>
+                <button
+                  onClick={handleGoToHome}
+                  className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-lg font-medium transition-all duration-300 flex items-center justify-center gap-2"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
+                  </svg>
+                  Go to Dashboard
+                </button>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </motion.div>
     </div>
   );

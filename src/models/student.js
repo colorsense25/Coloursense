@@ -20,28 +20,15 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: [true, 'Gender is required'],
         enum: {
-          values: ['male', 'female', 'other'],
-          message: 'Gender must be either male, female, or other',
+          values: ['Male', 'Female', 'Other'],
+          message: 'Gender must be either Male, Female, or Other',
         },
-        lowercase: true,
         trim: true,
       },
       fatherName: {
         type: String,
         required: [true, "Father's name is required"],
         trim: true,
-      },
-      motherName: {
-        type: String,
-        required: [true, "Mother's name is required"],
-        trim: true,
-      },emailAddress: {
-        type: String,
-        required: [true, 'Email is required'],
-        unique: true,
-        lowercase: true,
-        trim: true,
-        match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Please fill a valid email address'],
       },
       phoneNumber: {
         type: String,
@@ -64,7 +51,6 @@ const userSchema = new mongoose.Schema({
       selectedCourse: {
         type: String,
         required: [true, 'Course selection is required'],
-        enum: ['HTML, CSS, JS','ChatGPT and AI tools','Industrial Training', 'React', 'MERN FullStack', 'CorelDRAW', 'Tally', 'Premier Pro', 'WordPress', 'Computer Course', 'MS Office', 'PTE', "AutoCAD"],
       },
       courseDuration: {
         type: String,
