@@ -97,13 +97,14 @@ const EditStaff = () => {
         setIsLoading(true);
         setError(null);
         
-        const res = await fetch(`/api/admin/staff/editStaff/${id}`);
+        const res = await fetch(`/api/admin/manageStaff/${id}`);
         if (!res.ok) {
           const errorData = await res.json();
           throw new Error(errorData.message || 'Failed to fetch staff data');
         }
         
-        const data = await res.json();
+        const payload = await res.json();
+        const data = payload?.data || payload;
         setStaff(data);
         
         const formatDateSafely = (dateString) => {
@@ -156,7 +157,7 @@ const EditStaff = () => {
     setSuccess(false);
     
     try {
-      const res = await fetch(`/api/admin/staff/editStaff/${id}`, {
+      const res = await fetch(`/api/admin/manageStaff/${id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -188,7 +189,7 @@ const EditStaff = () => {
       setIsSubmitting(true);
       setError(null);
       
-      const res = await fetch(`/api/admin/staff/editStaff/${id}`, {
+      const res = await fetch(`/api/admin/manageStaff/${id}`, {
         method: 'DELETE',
       });
       

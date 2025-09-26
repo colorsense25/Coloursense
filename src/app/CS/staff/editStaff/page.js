@@ -30,7 +30,7 @@ const StaffManagement = () => {
   useEffect(() => {
     const fetchStaff = async () => {
       try {
-        const res = await fetch('/api/admin/staff/editStaff');
+        const res = await fetch('/api/admin/manageStaff');
         if (!res.ok) throw new Error('Failed to fetch staff');
         const data = await res.json();
         setStaffList(data);
@@ -73,7 +73,7 @@ const StaffManagement = () => {
   // Handle delete with confirmation and animation
   const handleDelete = async (staffId) => {
     try {
-      const res = await fetch(`/api/admin/staff/editStaff/${staffId}`, { 
+      const res = await fetch(`/api/admin/manageStaff/${staffId}`, { 
         method: 'DELETE' 
       });
       

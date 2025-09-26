@@ -14,6 +14,20 @@ async function connectToDatabase() {
   }
 }
 
+// GET request handler for listing all staff
+export async function GET() {
+  try {
+    await connectToDatabase();
+    const staffList = await Staff.find({}).sort({ StaffID: 1 }).lean();
+    return NextResponse.json(staffList, { status: 200 });
+  } catch (error) {
+    return NextResponse.json(
+      { success: false, message: error.message || 'Failed to fetch staff list' },
+      { status: 500 }
+    );
+  }
+}
+
 // POST request handler for creating new staff with base64 photo
 export async function POST(request) {
   let staffData = {};
